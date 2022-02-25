@@ -8,7 +8,7 @@ function SignIn() {
   const [showPassword,setShowPassword]=useState(true)
   const [formData,setFormData]=useState({
     email:'',
-    password:'ssssssddf'
+    password:''
   })
   const {email,password}=formData
   const navigate=useNavigate()

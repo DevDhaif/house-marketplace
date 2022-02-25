@@ -1,4 +1,6 @@
 import { useState } from "react"
+import {getAuth,createUserWithEmailAndPassword,updateProfile} from 'firebase/auth'
+import {db} from '../firebase.config'
 import { Link,useNavigate } from "react-router-dom"
 import {FaArrowAltCircleRight, FaArrowCircleRight, FaArrowRight, FaEye, FaHome, FaPersonBooth, FaRegArrowAltCircleRight} from 'react-icons/fa'
 import {MdEmail} from 'react-icons/md'
@@ -11,7 +13,7 @@ function SignUp() {
   const [formData,setFormData]=useState({
     name:'',
     email:'',
-    password:'ssssssddf'
+    password:''
   })
   const {name,email,password}=formData
   const navigate=useNavigate()
@@ -21,13 +23,33 @@ function SignUp() {
       [e.target.id]:e.target.value
     }))
   }
+
+  const onSubmit=async(e)=>{
+    e.preventDefault()
+
+    try {
+      const auth=getAuth()
+
+      const userCredential=await createUserWithEmailAndPassword(auth,email,password)
+
+      const user=userCredential.user
+
+      updateProfile(auth.currentUser,{
+        displayName:name,
+      })
+      navigate('/')
+    }
+    catch (error){
+      console.log(error);
+    }
+  }
   return (
     <div className="w-full px-4 bg-gray-100 h-full">
       <header className="px-4 py-6 text-center">
         <h1 className="text-xl">Welcome Back!</h1>
       </header>
       <main>
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={onSubmit}>
           <label htmlFor="name" className="relative text-gray-400 focus-within:text-gray-600 block w-full">
               <BsPerson className=" w-6 h-6 absolute top-1/2 transform -translate-y-1/2 left-0 ml-2"/>
               <input className="pl-10 py-3 rounded-lg  w-full outline-none" type="name" name="name" id="name" value={name} placeholder="Name" onChange={onChange}/>
