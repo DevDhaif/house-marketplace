@@ -1,10 +1,12 @@
 import { useState } from "react"
+import { Link,useNavigate } from "react-router-dom"
+import { toast } from "react-toastify"
 import {getAuth,createUserWithEmailAndPassword,updateProfile} from 'firebase/auth'
 import {db} from '../firebase.config'
-import { Link,useNavigate } from "react-router-dom"
-import {FaArrowAltCircleRight, FaArrowCircleRight, FaArrowRight, FaEye, FaHome, FaPersonBooth, FaRegArrowAltCircleRight} from 'react-icons/fa'
+import { doc, setDoc ,serverTimestamp} from "firebase/firestore"; 
+import { FaEye} from 'react-icons/fa'
 import {MdEmail} from 'react-icons/md'
-import {BsArrowRightCircle, BsPerson} from 'react-icons/bs'
+import {BsPerson} from 'react-icons/bs'
 import {RiLockPasswordFill} from 'react-icons/ri'
 import {IoIosArrowDroprightCircle} from 'react-icons/io'
 
@@ -37,10 +39,14 @@ function SignUp() {
       updateProfile(auth.currentUser,{
         displayName:name,
       })
+      const formDataCopy={...formData}
+      delete formDataCopy.password
+      formDataCopy.timestamp=serverTimestamp()
+      await setDoc(doc(db,'users',user.uid),formDataCopy)
       navigate('/')
     }
     catch (error){
-      console.log(error);
+      toast.error("Worng Credintials!")
     }
   }
   return (

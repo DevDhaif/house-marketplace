@@ -1,8 +1,15 @@
-import React from 'react'
-
+import {useEffect,useState} from 'react'
+import {getAuth} from 'firebase/auth'
 function Profile() {
-  return (
-    <div>Profile</div>
+  const [user,setUser]=useState(null)
+  const auth =getAuth()
+  useEffect(()=>{
+    setUser(auth.currentUser)
+  },[])
+  return user?(
+    <h1>Hi {user.displayName}</h1>
+  ):(
+    <h1>Guest</h1>
   )
 }
 

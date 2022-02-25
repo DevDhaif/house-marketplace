@@ -1,7 +1,9 @@
 import { useState } from "react"
 import { Link,useNavigate } from "react-router-dom"
-import {FaArrowAltCircleRight, FaArrowCircleRight, FaArrowRight, FaEye, FaHome, FaPersonBooth, FaRegArrowAltCircleRight} from 'react-icons/fa'
-import {BsArrowRightCircle, BsPerson} from 'react-icons/bs'
+import { toast } from "react-toastify"
+import {getAuth,signInWithEmailAndPassword} from 'firebase/auth'
+import {FaEye} from 'react-icons/fa'
+import { BsPerson} from 'react-icons/bs'
 import {RiLockPasswordFill} from 'react-icons/ri'
 import {IoIosArrowDroprightCircle} from 'react-icons/io'
 function SignIn() {
@@ -18,13 +20,35 @@ function SignIn() {
       [e.target.id]:e.target.value
     }))
   }
+  const onSubmit=async(e)=>{
+    e.preventDefault()
+    try{
+      const auth=getAuth()
+
+    const userCredential=await signInWithEmailAndPassword(auth,email,password)
+
+    if(userCredential.user){
+      navigate('/')
+      toast.success("Success!")
+
+    }
+  }
+    catch(error){
+      toast.error('Bad User Credintial',
+      {position: toast.POSITION.TOP_CENTER,
+        className: 'w-2/3  mx-auto rounded-full  '}
+      )
+    }
+    
+    
+  }
   return (
     <div className="w-full px-4 bg-gray-100 h-full">
       <header className="px-4 py-6 text-center">
         <h1 className="text-xl">Welcome Back!</h1>
       </header>
       <main>
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={onSubmit}>
           <label htmlFor="email" className="relative text-gray-400 focus-within:text-gray-600 block w-full">
               <BsPerson className=" w-6 h-6 absolute top-1/2 transform -translate-y-1/2 left-0 ml-2"/>
               <input className="pl-10 py-3 rounded-lg  w-full outline-none" type="email" name="email" id="email" value={email} placeholder="Email" onChange={onChange}/>
