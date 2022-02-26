@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .profileName {
+    all: unset;
+    margin: 0.3rem 0;
+    font-weight: 600;
+    width: 100%;
+  }
+  .profileNameActive {
+    all: unset;
+    margin: 0.3rem 0;
+    font-weight: 600;
+    width: 100%;
+    background-color: rgba(44, 44, 44, 0.1);
+  }
+  h2 {
+    line-height: 0.1em; 
+ } 
+ 
+ h2 span {  
+ }
+}

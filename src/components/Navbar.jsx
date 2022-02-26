@@ -1,7 +1,6 @@
 import {useNavigate, useLocation} from 'react-router-dom'
 
 import OfferIcon from '../assets/svg/localOfferIcon.svg?component';
-import HomeIcon from '../assets/svg/HomeIcon.svg?component';
 import ExploreIcon from '../assets/svg/exploreIcon.svg?component';
 import ProfileIcon from '../assets/svg/personOutlineIcon.svg?component';
 
