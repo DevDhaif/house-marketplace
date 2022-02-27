@@ -9,6 +9,7 @@ import {MdEmail} from 'react-icons/md'
 import {BsPerson} from 'react-icons/bs'
 import {RiLockPasswordFill} from 'react-icons/ri'
 import {IoIosArrowDroprightCircle} from 'react-icons/io'
+import OAuth from "../components/OAuth"
 
 function SignUp() {
   const [showPassword,setShowPassword]=useState(true)
@@ -78,6 +79,10 @@ function SignUp() {
           </div>
         </form>
 
+
+        <OAuth/>
+
+        
         <Link to={'/sign-in'}>
           <p className="text-base font-semibold text-green-700 text-center mt-4">Sign In</p>
         </Link>

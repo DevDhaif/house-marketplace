@@ -6,6 +6,7 @@ import {FaEye} from 'react-icons/fa'
 import { BsPerson} from 'react-icons/bs'
 import {RiLockPasswordFill} from 'react-icons/ri'
 import {IoIosArrowDroprightCircle} from 'react-icons/io'
+import OAuth from "../components/OAuth"
 function SignIn() {
   const [showPassword,setShowPassword]=useState(true)
   const [formData,setFormData]=useState({
@@ -68,6 +69,10 @@ function SignIn() {
             <button className=""><IoIosArrowDroprightCircle className="mt-1 w-8 h-8  rounded-full fill-green-500"/></button>
           </div>
         </form>
+
+
+        <OAuth />
+
 
         <Link to={'/sign-up'}>
           <p className="text-base font-semibold text-green-700 text-center mt-4">Sign Up</p>
