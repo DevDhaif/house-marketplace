@@ -4,6 +4,7 @@ import {collection,getDocs,query,where,orderBy,limit,startAfter}  from 'firebase
 import {db} from '../firebase.config'
 import {toast } from 'react-toastify'
 import Spinner from '../components/Spinner'
+import ListingIte from '../components/ListingIte'
 
 
 function Category() {
@@ -57,9 +58,9 @@ function Category() {
             ): listings.length>0?(
                     <>
                             <main>
-                                <ul>
+                                <ul className='mt-8 flex flex-col '>
                                     {listings.map((listing)=>(
-                                        <h3 key={listing.id}>{listing.data.name}</h3>
+                                        <ListingIte key={listing.id} listing={listing.data} id={listing.id}/>
                                     ))}
                                 </ul> 
                             </main>
