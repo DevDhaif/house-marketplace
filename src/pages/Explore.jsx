@@ -13,12 +13,12 @@ function Explore() {
         <p>Categoriez</p>
         
         <div className='flex space-x-4 justify-between w-full'>
-          <Link to={'/category/rent'} className="space-y-2">
+          <Link to='/category/rent' className="space-y-2">
             <img src={RentImage} alt="rent" className='w-44 h-32 object-cover rounded-xl' />
             <p>Places for Rent</p>
           </Link>
 
-          <Link to={'/category/sell'} className="space-y-2">
+          <Link to='/category/sale' className="space-y-2">
             <img src={SellImage} alt="sell" className='w-44 h-32 object-cover rounded-xl'/>
             <p>Places for sale</p>
           </Link>
