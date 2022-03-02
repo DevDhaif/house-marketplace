@@ -6,12 +6,13 @@ import './index.css'
 import Navbar from './components/Navbar'
 import PrivateRoute from './components/PrivateRoute';
 import Explore from './pages/Explore'
-import Offer from './pages/Offer'
+import Offer from './pages/Offers'
 import Category from './pages/Category'
 import Profile from './pages/Profile'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
 import ForgotPassword from './pages/ForgotPassword'
+import Offers from './pages/Offers';
 function App() {
 
   return (
@@ -19,7 +20,7 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<Explore/>}/>
-          <Route path='/offers' element={<Offer/>}/>
+          <Route path='/offers' element={<Offers/>}/>
           <Route path='/category/:categoryName' element={<Category/>}/>
           <Route path='/profile' element={<PrivateRoute/>}>
               <Route path='/profile' element={<Profile/>}/>
@@ -30,7 +31,7 @@ function App() {
         </Routes>
         <Navbar/>
       </Router>
-      <ToastContainer autoClose={1000}/>
+      <ToastContainer autoClose={3000}/>
     </>
   )
 }

@@ -7,19 +7,21 @@ import Spinner from '../components/Spinner'
 import ListingIte from '../components/ListingIte'
 
 
-function Category() {
+function Offers() {
     const [listings,setListings]=useState([])
     const [loading,setLoading]=useState(true)
 
     const params=useParams()
 
     useEffect(()=>{
+        console.log(params);
+
      const fetchListings=async()=>{
          try{
             //get Ref
             const listingsRef=collection(db,'listings')
             const q=query(listingsRef,
-                where('type','==',params.categoryName),
+                where('offer','==',true),
                 orderBy('timestamp','desc'),
                 limit(10))
             
@@ -39,36 +41,39 @@ function Category() {
         }
         
          catch(error){
-            toast.error("error")
+            toast.error(`${error}`)
          }
      }   
 
      fetchListings()
-    },[params.categoryName])
+    },[])
+
   return (
     <div className='mx-4 my-4 mb-28'>
         <header className='space-y-4 '>
-            <p className='text-3xl font-semibold '>Places for {params.categoryName === 'rent'? 'rent':'sale'}</p>
+            <p className='text-3xl font-semibold '>Offers</p>
         </header>
 
         {loading?(
             <Spinner/>
-            ): listings.length>0?(
+            ):listings && listings.length>0?(
                     <>
                             <main>
-                                <ul className='mt-8 grid grid-cols-1 md:grid-cols-4 gap-4'>
+                                <ul className='mt-8 grid grid-cols-1 md:grid-cols-4 gap-2'>
+                                <ListingIte key={listings[0].id} listing={listings[0].data} id={listings[0].id}/>
+
                                     {listings.map((listing)=>(
-                                        <ListingIte  key={listing.id} listing={listing.data} id={listing.id}/>
+                                        <ListingIte key={listing.id} listing={listing.data} id={listing.id}/>
                                     ))}
                                 </ul> 
                             </main>
                     </>
             )
             
-            : (<h1>No places for {params.categoryName} were found</h1>)
+            : (<h1>No offers were found</h1>)
         }
     </div>
   )
 }
 
-export default Category
+export default Offers
