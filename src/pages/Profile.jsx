@@ -2,9 +2,11 @@ import {useEffect,useState} from 'react'
 import {getAuth,updateProfile} from 'firebase/auth'
 import { doc, updateDoc } from 'firebase/firestore'
 import { db } from '../firebase.config'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import ProfileIcon from '../assets/svg/profile.svg?component';
 import { toast } from "react-toastify"
+import { FaArrowRight, FaHome } from 'react-icons/fa'
+import { RiArrowRightSLine } from 'react-icons/ri'
 
 
 
@@ -83,6 +85,12 @@ function Profile() {
             onChange={onChange}/>
           </form>
         </div>
+
+        <Link to="/create-listing" className='w-full flex justify-between  items-center mt-8 px-4 py-2 bg-gray-200 rounded-lg'>
+          <FaHome/>
+        <p>Sell or rent home</p>
+          <RiArrowRightSLine/>
+        </Link>
       </main>
     </div>
   )
