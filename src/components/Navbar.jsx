@@ -14,7 +14,7 @@ function Navbar  () {
         }
     }
   return (
-    <footer className=' bottom-0  fixed w-full py-2 bg-gray-100'>
+    <footer className=' bottom-0  mt-8 w-full py-1 bg-gray-200 sticky'>
         <nav className='w-full'>
             <ul className='flex justify-around'>
                 <li onClick={()=>navigate('/offers')}>
