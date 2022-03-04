@@ -2,9 +2,10 @@ import React, { useState,useEffect,useRef } from 'react'
 import {getAuth,onAuthStateChanged} from 'firebase/auth'
 import {useNavigate} from 'react-router-dom'
 import Spinner from '../components/Spinner'
+import { toast } from 'react-toastify'
 
 function CreateListing() {
-    const [geoLocationEnabled,setGeoLocationEnabled]=useState(true)
+    const [geoLocationEnabled,setGeoLocationEnabled]=useState(false)
     const [loading,setLoading]=useState(false)
 const[formData,setFormData]=useState({
     type:"rent",
@@ -15,8 +16,8 @@ const[formData,setFormData]=useState({
     furnished:false,
     address:'',
     offer:false,
-    regularPrice:0,
-    discountedPrice:0,
+    regularPrice:51,
+    discountedPrice:50,
     images:{},
     latitude:0,
     longitude:0
@@ -59,8 +60,43 @@ const[formData,setFormData]=useState({
         // eslint-disable-nextline react-hooks/exhaustive-deps
     },[isMounted])
 
-    const onSubmit=(e)=>{
-        e.preventDefault() 
+    const onSubmit=async(e)=>{
+        e.preventDefault();  
+
+        setLoading(true)
+
+
+        if(discountedPrice >= regularPrice ){
+            setLoading(false)
+            toast.error("Discounted price needs to be less than regular price")
+            return
+        }
+
+        if(images.length >6){
+            setLoading(false)
+            toast.error("Max 6 images")
+            return
+        }
+
+        //manage location
+        let geoLocation={}
+        let location
+
+        if(geoLocationEnabled){
+            const res=await fetch(`https://maps.google.com/maps/api/geocode/json?address=${address}
+            &key=AIzaSyAj1lg0Thhg1wWSABx9pe61HJteo4ysLII`)
+
+            const data=await res.json()
+
+            console.log(data);
+        }
+        else{
+            geoLocation.lat=latitude
+            geoLocation.lng=longitude
+            location=address
+            console.log(geoLocation,location);
+        }
+        setLoading(false)
         console.log(formData);
     }
 
@@ -95,14 +131,14 @@ const[formData,setFormData]=useState({
         return <Spinner/>
     }
     return (
-    <div className='w-full  px-4'>
+    <div className='w-full   px-4'>
         <header>
             <p className='text-2xl font-semibold'>Create Listing</p>
         </header>
 
         <main >
 
-            <form onSubmit={onSubmit} className="mt-4 flex flex-col space-y-2">
+            <form onSubmit={onSubmit} className="mt-4 flex flex-col  space-y-2 ">
 
                 <label htmlFor="" className='font-medium '>Sell / Rent</label>
                 <div className='flex space-x-4 px-2 mt-1 '>
@@ -272,7 +308,7 @@ const[formData,setFormData]=useState({
             <div className='flex items-center  space-x-2'>
                 <input 
                 type="number" 
-                className='w-12 py-1 text-center rounded-md border-none outline-none'
+                className='w-24 py-1 text-center rounded-md border-none outline-none'
                 id={"regularPrice"}
                 value={regularPrice}
                 onChange={onMutate}
@@ -291,7 +327,7 @@ const[formData,setFormData]=useState({
                 <div className='flex items-center  space-x-2'>
                     <input 
                     type="number" 
-                    className='w-12 py-1 text-center rounded-md border-none outline-none'
+                    className='w-18 py-1 text-center rounded-md border-none outline-none'
                     id={"discountedPrice"}
                     value={discountedPrice}
                     onChange={onMutate}
@@ -307,7 +343,7 @@ const[formData,setFormData]=useState({
             <label htmlFor="" className='block mt-4 font-medium '>Images</label>
             <p className='my-2'>First image will be the cover (only 6 images)</p>
             <input
-            className='file:mr-2 w-full file:px-2 file:py-1 px-4 py-2 file:font-medium bg-white rounded-md file:bg-green-500 file:border-none file:text-white file:rounded-lg' 
+            className='file:mr-2  w-full file:px-2 file:py-1 px-4 py-2 file:font-medium bg-white rounded-md file:bg-green-500 file:border-none file:text-white file:rounded-lg' 
             type="file"
             id="images"
             onChange={onMutate}
@@ -316,8 +352,11 @@ const[formData,setFormData]=useState({
             multiple
             required
             />
-
-            <button className='block px-4 py-1 bg-green-500 text-white font-medium rounded-md shadow-md shadow-gray-300 w-2/3 mx-auto createListingButton' type="submit">Create Listing</button>
+            
+            <div className='w-full flex items-center'>
+                <button className='mt-8 px-4 py-1 bg-green-500 text-white font-medium rounded-md shadow-md shadow-gray-300 w-2/3 mx-auto' type="submit">Create Listing</button>
+            </div>
+            
             </form>
         </main>
     </div>

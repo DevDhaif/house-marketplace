@@ -51,7 +51,7 @@ function Profile() {
     }))
   }
   return (
-    <div className=''>
+    <div className='mb-12'>
       <header className='flex justify-between mx-4 my-2'>
         <h1 className='text-xl font-semibold'>My Profile</h1>
         <button className='px-2 py-1 bg-green-500 font-semibold text-white rounded-xl' onClick={onLogOut}>Log out</button>
