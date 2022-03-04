@@ -14,8 +14,8 @@ function Navbar  () {
         }
     }
   return (
-    <footer className=' bottom-0  mt-8 w-full py-1 bg-gray-200 sticky '>
-        <nav className='w-full'>
+    <footer className=' bottom-0 left-0 right-0  h-20 z-50 flex justify-center items-center mt-12 sticky  w-full py-1 bg-gray-200  '>
+        <nav className='w-screen overflow-y-hidden'>
             <ul className='flex justify-around'>
                 <li onClick={()=>navigate('/offers')}>
                     <OfferIcon className={`${pathMatchRoute('/offers')? 'fill-teal-800':'' } h-12 w-12`}  /> 

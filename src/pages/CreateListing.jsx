@@ -1,6 +1,7 @@
 import React, { useState,useEffect,useRef } from 'react'
 import {getAuth,onAuthStateChanged} from 'firebase/auth'
 import {getStorage,ref,uploadBytesResumable,getDownloadURL} from 'firebase/storage'
+import {addDoc,collection,serverTimestamp} from 'firebase/firestore'
 import { db } from '../firebase.config'
 import {useNavigate} from 'react-router-dom'
 import Spinner from '../components/Spinner'
@@ -20,7 +21,7 @@ const[formData,setFormData]=useState({
     offer:false,
     regularPrice:51,
     discountedPrice:50,
-    images:{},
+    images: {},
     latitude:0,
     longitude:0
 
@@ -62,8 +63,8 @@ const[formData,setFormData]=useState({
         // eslint-disable-nextline react-hooks/exhaustive-deps
     },[isMounted])
 
-    const onSubmit=async(e)=>{
-        e.preventDefault();  
+    const onSubmit = async (e) => {
+        e.preventDefault()
 
         setLoading(true)
 
@@ -101,7 +102,7 @@ const[formData,setFormData]=useState({
 
         //Store image in firebase
         const storeImage=async(image)=>{
-            return new Promise ((resolve,reject)=>{
+            return new Promise ((resolve, reject)=>{
                 const storage=getStorage()
                 const fileName=`${auth.currentUser.uid}-${image.name}-${uuidv4()}`
 
@@ -138,19 +139,37 @@ const[formData,setFormData]=useState({
               })
         }
 
-        const imgUrls=await Promise.all(
-            [...images].map((image)=>storeImage(image))
+        const imgUrls = await Promise.all(
+            [...images].map((image) => storeImage(image))   
         ).catch(()=>{
             setLoading(false)
             toast.error("Images not uploaded")
             return
         })
 
-        console.log(imgUrls);
+
+        
+
+        const formDataCopy={
+            ...formData,
+            imgUrls,
+            geoLocation,
+            timestamp:serverTimestamp()
+        }
+        
+        delete formDataCopy.images
+        delete formDataCopy.address
+        location && (formDataCopy.location=location)
+
+        !formDataCopy.offer &&(delete formDataCopy.discountedPrice)
+
+        const docRef=await addDoc(collection(db,'listings'),formDataCopy)
+
         setLoading(false)
 
+        toast.success("Listing saved")
+        navigate(`/category/${formDataCopy.type}/${docRef.id}`)
 
-        console.log(formData);
     }
 
     const onMutate=(e)=>{
@@ -321,12 +340,12 @@ const[formData,setFormData]=useState({
                         required />
                     </div>
                     <div className='flex flex-col  '>
-                        <label htmlFor="" className='block mt-4 font-medium '>Latitude</label>
+                        <label htmlFor="" className='block mt-4 font-medium '>Longitude</label>
                         <input
                         className=' py-1 w-2/3 text-center rounded-md border-none outline-none '  
                         type="number"
-                        id='latitude'
-                        value={latitude}
+                        id='longitude'
+                        value={longitude}
                         onChange={onMutate}
                         required />
                     </div>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {Link} from 'react-router-dom'
 import BedIcon from '../assets/svg/bedIcon.svg?component';
 import BathtubIcon from '../assets/svg/bathtubIcon.svg?component';
@@ -7,10 +7,13 @@ import { FaBed } from 'react-icons/fa';
 
 
 function ListingIte({listing,id,onDelete})   {
+    useEffect(()=>{
+        console.log(listing);
+    },[])
   return (
     <li className='shadow-md shadow-gray-400 border-gray-600 overflow-hidden    rounded-lg flex flex-col '>
         <Link to={`/category/${listing.type}/${id}`} className='w-full  space-y-4'>
-            <img className='w-full h-36 object-cover max-h-full' src={listing.imageUrls[0]} alt={listing.name} />
+            <img className='w-full h-36 object-cover max-h-full' src={listing.imgUrls[0]} alt={listing.name} />
             <div className='space-y-1 mx-4 py-4'>
             <p className='text-gray-700 text-xs font-semibold'>{listing.location}</p>
             <p className='text-lg font-semibold font-serif'>{listing.name}</p>
