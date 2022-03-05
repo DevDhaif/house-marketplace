@@ -96,8 +96,6 @@ const[formData,setFormData]=useState({
         else{
             geoLocation.lat=latitude
             geoLocation.lng=longitude
-            location=address
-            console.log(geoLocation,location);
         }
 
         //Store image in firebase
@@ -157,9 +155,9 @@ const[formData,setFormData]=useState({
             timestamp:serverTimestamp()
         }
         
+        formDataCopy.location=address
         delete formDataCopy.images
         delete formDataCopy.address
-        location && (formDataCopy.location=location)
 
         !formDataCopy.offer &&(delete formDataCopy.discountedPrice)
 
