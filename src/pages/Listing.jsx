@@ -77,6 +77,12 @@ function Listing() {
 
 
              <p className='text-xl'>Location</p>
+
+             {auth.currentUser?.uid !== listing.userRef &&(
+                 <Link to={`/contact/${listing.userRef}?listingName=${listing.name}&listingLocation=${listing.location}`}>
+                    Contact Landlord 
+                 </Link>
+             )}
         </div>
     </main>
   )
