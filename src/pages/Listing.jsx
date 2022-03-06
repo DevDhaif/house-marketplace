@@ -8,6 +8,8 @@ import Spinner from '../components/Spinner'
 import { FaBackward, FaShare, FaShareAlt } from 'react-icons/fa'
 import { RiArrowLeftSLine } from 'react-icons/ri'
 
+import {MapContainer,Marker,Popup,TileLayer} from 'react-leaflet' 
+
 function Listing() {
     const [listing,setListing]=useState([])
     const [loading,setLoading]=useState(true)
@@ -79,10 +81,26 @@ function Listing() {
 
              <p className='text-xl'>Location</p>
 
+            <div className='h-56 w-12/12'>
+                <MapContainer style={{height:'100%',width:'100%'}} 
+                center={[listing.geoLocation.lat,listing.geoLocation.lng]}
+                zoom={13}
+                scrollWheelZoom={false}>
+
+                <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url='https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png'/>
+                <Marker position={[listing.geoLocation.lat,listing.geoLocation.lng]}>
+                    <Popup>{listing.location}</Popup>
+                </Marker>
+                </MapContainer>
+            </div>
+
+
              {auth.currentUser?.uid == listing.userRef &&(
                  <Link to={`/contact/${listing.userRef}?listingName=${listing.name}`}
                         className="mx-auto px-12 py-3 font-semibold shadow-md shadow-gray-300 bg-green-500 text-white rounded-md">
                     Contact Owner
+                    
                  </Link>
              )}
              <button onClick={() => navigate(-1)}><RiArrowLeftSLine className='fill-green-500 w-10 h-10 absolute bottom-24  bg-white rounded-full'/></button>
