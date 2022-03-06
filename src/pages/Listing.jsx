@@ -9,7 +9,10 @@ import { FaBackward, FaShare, FaShareAlt } from 'react-icons/fa'
 import { RiArrowLeftSLine } from 'react-icons/ri'
 
 import {MapContainer,Marker,Popup,TileLayer} from 'react-leaflet' 
-
+import SwiperCore, {Navigation,Scrollbar,Pagination,A11y} from 'swiper'
+import {Swiper,SwiperSlide} from 'swiper/react'
+import 'swiper/swiper-bundle.css'
+SwiperCore.use([Navigation,Pagination,Scrollbar,A11y])
 function Listing() {
     const [listing,setListing]=useState([])
     const [loading,setLoading]=useState(true)
@@ -27,8 +30,9 @@ function Listing() {
 
           if(docSnap.exists()){
               setListing(docSnap.data())
-              setLoading(false)
               console.log(listing);
+              setLoading(false)
+              
           }
       } 
       
@@ -43,6 +47,23 @@ function Listing() {
 
   return (
     <main className='min-h-screen p-4'>
+
+        <Swiper slidesPerView={1} pagination={{clickable:true}}>
+
+            {listing.imgUrls.map((url,index)=>(
+                <SwiperSlide key={index}>
+                    <div 
+                    className='w-full h-96 object-cover'
+                    style={{background:`url(${listing.imgUrls[index]})
+                     center no-repeat `,
+                    backgroundSize:'cover'}}>
+                        
+                    </div>
+                </SwiperSlide>
+            ))}
+        </Swiper>
+
+
         <div className='w-full justify-end flex ' onClick={()=>{
             navigator.clipboard.writeText(window.location.href)
             setSharedLink(true)
@@ -87,10 +108,11 @@ function Listing() {
                 zoom={13}
                 scrollWheelZoom={false}>
 
-                <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                <TileLayer  attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url='https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png'/>
-                <Marker position={[listing.geoLocation.lat,listing.geoLocation.lng]}>
-                    <Popup>{listing.location}</Popup>
+                <Marker  draggable    position={[listing.geoLocation.lat,listing.geoLocation.lng]}>
+                    <Popup >{listing.location}</Popup>
+                    
                 </Marker>
                 </MapContainer>
             </div>

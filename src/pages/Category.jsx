@@ -7,6 +7,7 @@ import Spinner from '../components/Spinner'
 import ListingIte from '../components/ListingIte'
 
 
+
 function Category() {
     const [listings,setListings]=useState([])
     const [loading,setLoading]=useState(true)

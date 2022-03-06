@@ -3,6 +3,7 @@ import RentImage from '../assets/jpg/rentCategoryImage.jpg'
 import SellImage from '../assets/jpg/sellCategoryImage.jpg'
 
 function Explore() {
+ 
   return (
     <div id="explore" className='mx-4 min-h-screen'>
       <header>
@@ -23,7 +24,9 @@ function Explore() {
             <p>Places for sale</p>
           </Link>
         </div>
+
       </main>
+      
     </div>
   )
 }
