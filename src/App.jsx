@@ -6,7 +6,6 @@ import './index.css'
 import Navbar from './components/Navbar'
 import PrivateRoute from './components/PrivateRoute';
 import Explore from './pages/Explore'
-import Offer from './pages/Offers'
 import Category from './pages/Category'
 import Profile from './pages/Profile'
 import SignIn from './pages/SignIn'
@@ -15,12 +14,15 @@ import ForgotPassword from './pages/ForgotPassword'
 import Offers from './pages/Offers';
 import CreateListing from './pages/CreateListing';
 import Listing from './pages/Listing';
+import Contact from './pages/Contact';
 function App() {
 
   return (
     <>
       <Router>
+      <div className='min-h-screen'>
         <Routes>
+        
           <Route path='/' element={<Explore/>}/>
           <Route path='/offers' element={<Offers/>}/>
           <Route path='/category/:categoryName' element={<Category/>}/>
@@ -32,7 +34,9 @@ function App() {
           <Route path='/forgot-password' element={<ForgotPassword/>}/>
           <Route path="/create-listing" element={<CreateListing/>}/>
           <Route path="/category/:categoryName/:listingId" element={<Listing/>}/>
+          <Route path="/contact/:lanlordId" element={<Contact/>}/>
         </Routes>
+        </div>
         <Navbar/>
       </Router>
       <ToastContainer autoClose={3000}/>

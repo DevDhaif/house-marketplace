@@ -4,7 +4,7 @@ import SellImage from '../assets/jpg/sellCategoryImage.jpg'
 
 function Explore() {
   return (
-    <div id="explore" className='mx-4'>
+    <div id="explore" className='mx-4 min-h-screen'>
       <header>
         <p className='text-3xl font-semibold'>Explore</p>
       </header>

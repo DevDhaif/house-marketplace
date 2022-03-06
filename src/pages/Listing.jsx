@@ -5,7 +5,8 @@ import {getDoc,doc} from 'firebase/firestore'
 import {getAuth} from 'firebase/auth'
 import {db} from '../firebase.config'
 import Spinner from '../components/Spinner'
-import { FaShare, FaShareAlt } from 'react-icons/fa'
+import { FaBackward, FaShare, FaShareAlt } from 'react-icons/fa'
+import { RiArrowLeftSLine } from 'react-icons/ri'
 
 function Listing() {
     const [listing,setListing]=useState([])
@@ -78,11 +79,13 @@ function Listing() {
 
              <p className='text-xl'>Location</p>
 
-             {auth.currentUser?.uid !== listing.userRef &&(
-                 <Link to={`/contact/${listing.userRef}?listingName=${listing.name}&listingLocation=${listing.location}`}>
-                    Contact Landlord 
+             {auth.currentUser?.uid == listing.userRef &&(
+                 <Link to={`/contact/${listing.userRef}?listingName=${listing.name}`}
+                        className="mx-auto px-12 py-3 font-semibold shadow-md shadow-gray-300 bg-green-500 text-white rounded-md">
+                    Contact Owner
                  </Link>
              )}
+             <button onClick={() => navigate(-1)}><RiArrowLeftSLine className='fill-green-500 w-10 h-10 absolute bottom-24  bg-white rounded-full'/></button>
         </div>
     </main>
   )
