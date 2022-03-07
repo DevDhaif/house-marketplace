@@ -53,10 +53,10 @@ function Listing() {
             {listing.imgUrls.map((url,index)=>(
                 <SwiperSlide key={index}>
                     <div 
-                    className='w-full h-96 object-cover'
+                    className='w-full h-96'
                     style={{background:`url(${listing.imgUrls[index]})
                      center no-repeat `,
-                    backgroundSize:'cover'}}>
+                    backgroundSize:'contain'}}>
                         
                     </div>
                 </SwiperSlide>
@@ -110,7 +110,7 @@ function Listing() {
 
                 <TileLayer  attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url='https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png'/>
-                <Marker  draggable    position={[listing.geoLocation.lat,listing.geoLocation.lng]}>
+                <Marker  onClick={((e)=>console.log(e))}    position={[listing.geoLocation.lat,listing.geoLocation.lng]}>
                     <Popup >{listing.location}</Popup>
                     
                 </Marker>

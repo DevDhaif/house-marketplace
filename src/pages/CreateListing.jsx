@@ -7,6 +7,15 @@ import {useNavigate} from 'react-router-dom'
 import Spinner from '../components/Spinner'
 import { toast } from 'react-toastify'
 import {v4 as uuidv4} from 'uuid'
+import {
+    MapContainer,
+    Marker,
+    Popup,
+    TileLayer,
+    useMapEvents,
+  } from 'react-leaflet'
+
+
 function CreateListing() {
     const [geoLocationEnabled,setGeoLocationEnabled]=useState(false)
     const [loading,setLoading]=useState(false)
@@ -22,8 +31,8 @@ const[formData,setFormData]=useState({
     regularPrice:51,
     discountedPrice:50,
     images: {},
-    latitude:0,
-    longitude:0
+    latitude:15.508457,
+    longitude:32.522854
 
 })
   const {
@@ -171,6 +180,10 @@ const[formData,setFormData]=useState({
     }
 
     const onMutate=(e)=>{
+        if(typeof e.latlng === "object"){
+        console.log(e.latlng);
+        }
+        
        let boolean=null
        
        if(e.target.value === "true"){
@@ -189,10 +202,18 @@ const[formData,setFormData]=useState({
        }
 
        if(!e.target.files){
+           if(typeof e.latlng === "object"){
+            setFormData((prev)=>({
+                ...prev,
+                latitude:e.latlng.lat,
+                longitude:e.latlng.lng,
+            }))
+           }
+           else{
         setFormData((prev)=>({
             ...prev,
             [e.target.id]:boolean ?? e.target.value
-        }))
+        }))}
        }
     }
 
@@ -349,6 +370,27 @@ const[formData,setFormData]=useState({
                     </div>
                 </div>
             )}
+
+            <label htmlFor="" className='block mt-4 font-medium '>Location on map</label>
+            <div className='h-56 w-12/12'>
+            <MapContainer style={{height:'100%',width:'100%'}} 
+            
+            center={[latitude,longitude]}
+            zoom={8}
+            scrollWheelZoom={true}>
+
+            <TileLayer  attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url='https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png'/>
+            <Marker  draggable  eventHandlers={{
+                
+              mouseover: (e) => onMutate(e)
+            }}   position={[latitude,longitude]}>
+                <Popup >yes</Popup>
+                
+            </Marker>
+            </MapContainer>
+        </div>
+
 
             <label htmlFor="" className='block mt-4 font-medium '>Offer</label>
             <div className='flex space-x-4 px-2 mt-1 '>

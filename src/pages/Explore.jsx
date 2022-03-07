@@ -1,6 +1,15 @@
 import {Link} from 'react-router-dom'
 import RentImage from '../assets/jpg/rentCategoryImage.jpg'
 import SellImage from '../assets/jpg/sellCategoryImage.jpg'
+import {
+  MapContainer,
+  Marker,
+  Popup,
+  TileLayer,
+  useMapEvents,
+} from 'react-leaflet'
+import { useState } from 'react'
+
 
 function Explore() {
  
@@ -26,7 +35,24 @@ function Explore() {
         </div>
 
       </main>
-      
+      <div className='h-56 w-12/12'>
+                <MapContainer style={{height:'100%',width:'100%'}} 
+                center={[15.601709540371429,33.517728805542]}
+                zoom={10}
+                scrollWheelZoom={true}>
+
+                <TileLayer  attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url='https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png'/>
+                <Marker draggable  eventHandlers={{
+                  click: (e) => {
+                    console.log('marker clicked', e.latlng)
+                  },
+                }}   position={[17.601709540371429,32.517728805542]}>
+                    <Popup >yes</Popup>
+                    
+                </Marker>
+                </MapContainer>
+            </div>
     </div>
   )
 }
