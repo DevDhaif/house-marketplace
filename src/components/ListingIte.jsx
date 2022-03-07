@@ -4,6 +4,7 @@ import BedIcon from '../assets/svg/bedIcon.svg?component';
 import BathtubIcon from '../assets/svg/bathtubIcon.svg?component';
 import { list } from 'postcss';
 import { FaBed } from 'react-icons/fa';
+import { AiFillDelete } from 'react-icons/ai';
 
 
 function ListingIte({listing,id,onDelete})   {
@@ -11,9 +12,9 @@ function ListingIte({listing,id,onDelete})   {
         console.log(listing);
     },[])
   return (
-    <li className='shadow-md shadow-gray-400 border-gray-600 overflow-hidden    rounded-lg flex flex-col '>
+    <li className='shadow-md relative shadow-gray-400 border-gray-600 overflow-hidden    rounded-lg flex flex-col '>
         <Link to={`/category/${listing.type}/${id}`} className='w-full  space-y-4'>
-            <img className='w-full h-36 object-cover max-h-full' src={listing.imgUrls[0]} alt={listing.name} />
+            <img className='w-full h-36 object-contain max-h-full' src={listing.imgUrls[0]} alt={listing.name} />
             <div className='space-y-1 mx-4 py-4'>
             <p className='text-gray-700 text-xs font-semibold'>{listing.location}</p>
             <p className='text-lg font-semibold font-serif'>{listing.name}</p>
@@ -34,12 +35,10 @@ function ListingIte({listing,id,onDelete})   {
 
             
         </Link>
-            {/**
                 {onDelete && (
-                    <DeleteIcon onClick={()=>onDelete(listing.id,listing.name)}/>
+                    <AiFillDelete className='absolute right-5 top-5 fill-red-700 hover:fill-red-500 hover:scale-125 cursor-pointer' size={20} onClick={()=>onDelete(listing.id,listing.name)}/>
                     )}
-            */}
-
+           
             
     </li>
   )
