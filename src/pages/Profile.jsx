@@ -29,16 +29,6 @@ function Profile() {
   const {name,email}=formData
 
   const navigate=useNavigate()
-  const onDelete=async(listingId)=>{
-    console.log('hi delete');
-    if(window.confirm("Are you sure ?")){
-        await deleteDoc(doc(db,'listings',listingId))
-        const updatedListings= listings.filter((listing)=>{
-          (listing.id !== listingId)
-        })
-        setListings(updatedListings)
-    }
-  }
   
   useEffect(()=>{
     const fetchUserListings=async()=>{
@@ -63,7 +53,7 @@ function Profile() {
      
     }
     fetchUserListings()
-  },[auth.currentUser.uid],onDelete)
+  },[auth.currentUser.uid])
 
   const onLogOut=()=>{
     auth.signOut()
@@ -96,7 +86,20 @@ function Profile() {
   }
 
 
-  
+  const onDelete=async(listingId)=>{
+    
+    if(window.confirm("Are you sure ?")){
+        await deleteDoc(doc(db,'listings',listingId))
+        console.log(listings)
+        const updatedListings= listings.filter(
+          (listing)=> listing.id !== listingId
+        )
+        
+        setListings(updatedListings)
+        console.log(updatedListings);
+        toast.success("Deleted succesfully")
+    }
+  }
   return (
     <div className='mb-12'>
       <header className='flex justify-between mx-4 my-2'>
