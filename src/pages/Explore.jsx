@@ -9,6 +9,7 @@ import {
   useMapEvents,
 } from 'react-leaflet'
 import { useState } from 'react'
+import Slider from '../components/Slider'
 
 
 function Explore() {
@@ -20,6 +21,7 @@ function Explore() {
       </header>
 
       <main className=''>
+      <Slider/>
         <p>Categoriez</p>
         
         <div className='flex space-x-4 justify-between w-full'>

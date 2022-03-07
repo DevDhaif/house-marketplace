@@ -51,12 +51,13 @@ function Listing() {
         <Swiper slidesPerView={1} pagination={{clickable:true}}>
 
             {listing.imgUrls.map((url,index)=>(
-                <SwiperSlide key={index}>
+                <SwiperSlide key={index} >
                     <div 
                     className='w-full h-96'
                     style={{background:`url(${listing.imgUrls[index]})
                      center no-repeat `,
                     backgroundSize:'contain'}}>
+                        
                         
                     </div>
                 </SwiperSlide>
@@ -118,7 +119,7 @@ function Listing() {
             </div>
 
 
-             {auth.currentUser?.uid == listing.userRef &&(
+             {auth.currentUser?.uid !== listing.userRef &&(
                  <Link to={`/contact/${listing.userRef}?listingName=${listing.name}`}
                         className="mx-auto px-12 py-3 font-semibold shadow-md shadow-gray-300 bg-green-500 text-white rounded-md">
                     Contact Owner

@@ -14,6 +14,7 @@ import {
     TileLayer,
     useMapEvents,
   } from 'react-leaflet'
+import Listing from './Listing'
 
 
 function CreateListing() {
@@ -346,30 +347,7 @@ const[formData,setFormData]=useState({
             required
             />
 
-            {!geoLocationEnabled &&(
-                <div className='w-full flex space-x-2 '>
-                    <div className='flex flex-col '>
-                        <label htmlFor="" className='block mt-4 font-medium '>Latitude</label>
-                        <input
-                        className=' py-1 w-2/3 text-center rounded-md border-none outline-none ' 
-                        type="number"
-                        id='latitude'
-                        value={latitude}
-                        onChange={onMutate}
-                        required />
-                    </div>
-                    <div className='flex flex-col  '>
-                        <label htmlFor="" className='block mt-4 font-medium '>Longitude</label>
-                        <input
-                        className=' py-1 w-2/3 text-center rounded-md border-none outline-none '  
-                        type="number"
-                        id='longitude'
-                        value={longitude}
-                        onChange={onMutate}
-                        required />
-                    </div>
-                </div>
-            )}
+           
 
             <label htmlFor="" className='block mt-4 font-medium '>Location on map</label>
             <div className='h-56 w-12/12'>
@@ -385,7 +363,7 @@ const[formData,setFormData]=useState({
                 
               mouseover: (e) => onMutate(e)
             }}   position={[latitude,longitude]}>
-                <Popup >yes</Popup>
+                <Popup >{Listing.location}</Popup>
                 
             </Marker>
             </MapContainer>
