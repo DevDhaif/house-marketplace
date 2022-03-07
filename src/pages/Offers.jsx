@@ -9,7 +9,8 @@ import ListingIte from '../components/ListingIte'
 
 function Offers() {
     const [listings,setListings]=useState([])
-    const [loading,setLoading]=useState(true)
+    const [loading,setLoading]=useState(true)  
+    const [lastFetchedListing,setLastFetchedListing]=useState(null)
 
     const params=useParams()
 
@@ -23,10 +24,13 @@ function Offers() {
             const q=query(listingsRef,
                 where('offer','==',true),
                 orderBy('timestamp','desc'),
-                limit(10))
+                limit(1))
             
             const querySnap=await getDocs(q)
             
+            const lastVisible=querySnap.docs[querySnap.docs.length-1]
+            setLastFetchedListing(lastVisible)
+
             const listings=[]
             querySnap.forEach((doc)=>{
                 return listings.push({
@@ -48,6 +52,40 @@ function Offers() {
      fetchListings()
     },[])
 
+    const onFetchMore=async()=>{
+        try{
+           //get Ref
+           const listingsRef=collection(db,'listings')
+           const q=query(listingsRef,
+               where('offer','==',true),
+               orderBy('timestamp','desc'),
+               startAfter(lastFetchedListing),
+               limit(1))
+           
+           const querySnap=await getDocs(q)
+
+           const lastVisible=querySnap.docs[querySnap.docs.length-1]
+           setLastFetchedListing(lastVisible)
+           
+           const listings=[]
+           querySnap.forEach((doc)=>{
+               return listings.push({
+                   id:doc.id,
+                   data:doc.data()
+               }) 
+           })
+           
+
+           setListings((prev)=>[...prev,...listings])
+           setLoading(false)
+       }
+       
+        catch(error){
+           toast.error("error")
+        }
+    }
+
+
   return (
     <div className='mx-4 my-4 mb-28'>
         <header className='space-y-4 '>
@@ -60,13 +98,17 @@ function Offers() {
                     <>
                             <main>
                                 <ul className='mt-8 grid grid-cols-1 md:grid-cols-4 gap-2'>
-                                <ListingIte key={listings[0].id} listing={listings[0].data} id={listings[0].id}/>
 
                                     {listings.map((listing)=>(
                                         <ListingIte key={listing.id} listing={listing.data} id={listing.id}/>
                                     ))}
                                 </ul> 
                             </main>
+                            {lastFetchedListing &&(
+                                <p className='cursor-pointer text-center mx-auto mt-4 px-4 py-0.5 bg-green-500 w-28 rounded-md text-white'
+                                    onClick={onFetchMore}
+                                >Load More</p>
+                            )}
                     </>
             )
             

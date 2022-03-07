@@ -11,6 +11,7 @@ import ListingIte from '../components/ListingIte'
 function Category() {
     const [listings,setListings]=useState([])
     const [loading,setLoading]=useState(true)
+    const [lastFetchedListing,setLastFetchedListing]=useState(null)
 
     const params=useParams()
 
@@ -22,9 +23,12 @@ function Category() {
             const q=query(listingsRef,
                 where('type','==',params.categoryName),
                 orderBy('timestamp','desc'),
-                limit(10))
+                limit(5))
             
             const querySnap=await getDocs(q)
+
+            const lastVisible=querySnap.docs[querySnap.docs.length-1]
+            setLastFetchedListing(lastVisible)
             
             const listings=[]
             querySnap.forEach((doc)=>{
@@ -46,6 +50,43 @@ function Category() {
 
      fetchListings()
     },[params.categoryName])
+
+
+    //Load more
+    const onFetchMore=async()=>{
+        try{
+           //get Ref
+           const listingsRef=collection(db,'listings')
+           const q=query(listingsRef,
+               where('type','==',params.categoryName),
+               orderBy('timestamp','desc'),
+               startAfter(lastFetchedListing),
+               limit(10))
+           
+           const querySnap=await getDocs(q)
+
+           const lastVisible=querySnap.docs[querySnap.docs.length-1]
+           setLastFetchedListing(lastVisible)
+           
+           const listings=[]
+           querySnap.forEach((doc)=>{
+               return listings.push({
+                   id:doc.id,
+                   data:doc.data()
+               }) 
+           })
+           
+
+           setListings((prev)=>[...prev,...listings])
+           setLoading(false)
+       }
+       
+        catch(error){
+           toast.error("error")
+        }
+    }   
+
+
   return (
     <div className='mx-4 my-4 mb-28'>
         <header className='space-y-4 '>
@@ -63,6 +104,12 @@ function Category() {
                                     ))}
                                 </ul> 
                             </main>
+
+                            {lastFetchedListing &&(
+                                <p className='cursor-pointer text-center mx-auto mt-4 px-4 py-0.5 bg-green-500 w-28 rounded-md text-white'
+                                    onClick={onFetchMore}
+                                >Load More</p>
+                            )}
                     </>
             )
             
