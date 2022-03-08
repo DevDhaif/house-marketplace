@@ -90,16 +90,17 @@ function Profile() {
     
     if(window.confirm("Are you sure ?")){
         await deleteDoc(doc(db,'listings',listingId))
-        console.log(listings)
         const updatedListings= listings.filter(
           (listing)=> listing.id !== listingId
         )
-        
+
         setListings(updatedListings)
         console.log(updatedListings);
         toast.success("Deleted succesfully")
     }
   }
+
+  const onEdit=(listingId)=>navigate(`/edit-listing/${listingId}`)
   return (
     <div className='mb-12'>
       <header className='flex justify-between mx-4 my-2'>
@@ -147,7 +148,12 @@ function Profile() {
           (
             <div className='mt-4 p-4 space-y-4'>
           {listings.map((listing)=>(
-                <ListingIte key={listing.id} listing={listing.data} id={listing.id} onDelete={()=>onDelete(listing.id)}/>
+                <ListingIte 
+                key={listing.id} 
+                listing={listing.data} 
+                id={listing.id} 
+                onDelete={()=>onDelete(listing.id)} 
+                onEdit={()=>onEdit(listing.id)}/>
           ))}
         </div>
           )

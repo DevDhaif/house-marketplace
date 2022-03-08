@@ -3,11 +3,11 @@ import {Link} from 'react-router-dom'
 import BedIcon from '../assets/svg/bedIcon.svg?component';
 import BathtubIcon from '../assets/svg/bathtubIcon.svg?component';
 import { list } from 'postcss';
-import { FaBed } from 'react-icons/fa';
+import { FaBed, FaEdit } from 'react-icons/fa';
 import { AiFillDelete } from 'react-icons/ai';
 
 
-function ListingIte({listing,id,onDelete})   {
+function ListingIte({listing,id,onDelete,onEdit})   {
     useEffect(()=>{
         console.log(listing);
     },[])
@@ -35,8 +35,18 @@ function ListingIte({listing,id,onDelete})   {
 
             
         </Link>
+                    {onEdit &&(
+                    <FaEdit 
+                    className='absolute bottom-5 mb-0.5 fill-green-700 hover:fill-green-500 hover:scale-125 right-8' 
+                    size={18}
+                    onClick={()=>onEdit(id)}/>
+
+                    )}
                 {onDelete && (
-                    <AiFillDelete className='absolute right-5 top-5 fill-red-700 hover:fill-red-500 hover:scale-125 cursor-pointer' size={20} onClick={()=>onDelete(listing.id,listing.name)}/>
+                    <AiFillDelete 
+                    className='absolute right-2 bottom-5 fill-red-700 hover:fill-red-500 hover:scale-125 cursor-pointer' 
+                    size={20} 
+                    onClick={()=>onDelete(listing.id,listing.name)}/>
                     )}
            
             

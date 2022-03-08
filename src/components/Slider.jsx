@@ -41,7 +41,10 @@ function Slider() {
     if(loading){
         return <Spinner/>
     }
-    
+    if(listings.length === 0){
+        return <div>
+        </div>
+    }
   return (
     <div className='mt-4 px-4 py-2 bg-gray-400'>
     
