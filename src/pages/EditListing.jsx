@@ -1,4 +1,4 @@
-import React, { useState,useEffect,useRef } from 'react'
+import { useState,useEffect,useRef } from 'react'
 import {getAuth,onAuthStateChanged} from 'firebase/auth'
 import {getStorage,ref,uploadBytesResumable,getDownloadURL} from 'firebase/storage'
 import {doc,updateDoc, getDoc,serverTimestamp} from 'firebase/firestore'
@@ -19,7 +19,7 @@ function EditListing() {
   
     const [geoLocationEnabled,setGeoLocationEnabled]=useState(false)
     const [loading,setLoading]=useState(false)
-    const [listing,setListing]=useState([])
+    const [listing,setListing]=useState(false)
 const[formData,setFormData]=useState({
     type:"rent",
     name:'',
