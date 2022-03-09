@@ -12,7 +12,6 @@ import {
     Marker,
     Popup,
     TileLayer,
-    useMapEvents,
   } from 'react-leaflet'
 import Listing from './Listing'
 
@@ -101,7 +100,7 @@ const[formData,setFormData]=useState({
 
             const data=await res.json()
 
-            console.log(data);
+            
         }
         else{
             geoLocation.lat=latitude
@@ -181,9 +180,7 @@ const[formData,setFormData]=useState({
     }
 
     const onMutate=(e)=>{
-        if(typeof e.latlng === "object"){
-        console.log(e.latlng);
-        }
+        
         
        let boolean=null
        

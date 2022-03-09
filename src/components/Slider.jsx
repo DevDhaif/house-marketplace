@@ -8,6 +8,9 @@ import 'swiper/swiper-bundle.css'
 import Spinner from './Spinner'
 SwiperCore.use([Navigation,Pagination,Scrollbar,A11y])
 
+import { motion } from "framer-motion"
+
+
 function Slider() {
     const [loading,setLoading]=useState(true)
     const [listings,setListings]=useState(null)
@@ -33,7 +36,6 @@ function Slider() {
 
         setListings(listings)
         setLoading(false)
-        console.log(listings);
     }
     fetchListings()
     },[])
@@ -46,13 +48,18 @@ function Slider() {
         </div>
     }
   return (
-    <div className='mt-4 px-4 py-2 bg-gray-400'>
+    <motion.div 
+    initial={{ opacity: 0 ,y: -1000}}
+        animate={{ opacity: 1, y:0 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1 }}
+    className='mt-4 px-4 py-2 bg-gray-400'>
     
         <Swiper slidesPerView={1} pagination={{clickable:true}}>
             
                 {listings.map((data,id)=>(
                     <SwiperSlide key={id} onClick={()=>{navigate(`/category/${data.data.type}/${data.id}`)}}>
-                        <div className='w-full h-96 space-y-2'
+                        <div className='w-full h-72  space-y-2'
                         style={{background:`url(${data.data.imgUrls[0]}) center no-repeat `,
                         backgroundSize:'contain'}}>
 
@@ -64,7 +71,7 @@ function Slider() {
                     ))}
             
         </Swiper>
-    </div>
+    </motion.div>
   )
 }
 

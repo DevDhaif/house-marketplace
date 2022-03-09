@@ -5,7 +5,7 @@ import {db} from '../firebase.config'
 import {toast } from 'react-toastify'
 import Spinner from '../components/Spinner'
 import ListingIte from '../components/ListingIte'
-
+import { motion } from "framer-motion"
 
 
 function Category() {
@@ -87,6 +87,7 @@ function Category() {
     }   
 
 
+
   return (
     <div className='mx-4 my-4 mb-28'>
         <header className='space-y-4 '>
@@ -97,11 +98,21 @@ function Category() {
             <Spinner/>
             ): listings.length>0?(
                     <>
-                            <main>
-                                <ul className='mt-8 grid grid-cols-1 md:grid-cols-4 gap-4'>
+                            <main className='space-y-4'>
+                                <ul className='my-8 grid grid-cols-1 md:grid-cols-4 gap-4'>
                                     {listings.map((listing)=>(
-                                        <ListingIte  key={listing.id} listing={listing.data} id={listing.id}/>
+                                        <motion.div 
+                                        
+                                        key={listing.id}
+                                        initial={{ opacity: 0,   y: 200 }}
+                                        animate={{ opacity: 1 ,y:0}}
+                                        exit={{ opacity: 0 }}
+                                        transition={{ duration: 1 }}
+                                            >
+                                        <ListingIte   listing={listing.data} id={listing.id}/>
+                                        </motion.div>
                                     ))}
+                                    
                                 </ul> 
                             </main>
 

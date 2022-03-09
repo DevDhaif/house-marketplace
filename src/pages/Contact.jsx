@@ -12,7 +12,6 @@ function Contact() {
     const params=useParams()
 
     useEffect(() => {
-        console.log(params);
         const getLandlord=async ()=>{
             const docRef=doc(db,'users',params.lanlordId)
             const docSnap=await getDoc(docRef)
@@ -28,8 +27,7 @@ function Contact() {
 
     }, [params.lanlordId])
     
-    const onChange = (e) => {setMessage(e.target.value)
-    console.log(message);}
+    const onChange = (e) => {setMessage(e.target.value)}
     return (
     <div className='p-4 space-y-8'>
         <header className=''>

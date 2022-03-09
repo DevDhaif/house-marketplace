@@ -5,11 +5,10 @@ import { db } from '../firebase.config'
 import { Link, useNavigate } from 'react-router-dom'
 import ProfileIcon from '../assets/svg/profile.svg?component';
 import { toast } from "react-toastify"
-import { FaArrowRight, FaHome, FaXbox } from 'react-icons/fa'
+import { FaHome} from 'react-icons/fa'
 import { RiArrowRightSLine } from 'react-icons/ri'
-import Listing from './Listing'
 import ListingIte from '../components/ListingIte'
-import {AiFillDelete } from 'react-icons/ai'
+import { motion } from 'framer-motion'
 
 
 
@@ -49,7 +48,6 @@ function Profile() {
 
       setListings(listings)
       setLoading(false)
-      console.log(listings);
      
     }
     fetchUserListings()
@@ -95,7 +93,6 @@ function Profile() {
         )
 
         setListings(updatedListings)
-        console.log(updatedListings);
         toast.success("Deleted succesfully")
     }
   }
@@ -146,14 +143,24 @@ function Profile() {
         {!loading && listings?.length>0 &&
         
           (
-            <div className='mt-4 p-4 space-y-4'>
+            <div className='mt-4 p-4 space-y-4 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'
+            >
           {listings.map((listing)=>(
-                <ListingIte 
-                key={listing.id} 
+            <motion.div 
+                                        
+            key={listing.id}
+            initial={{ opacity: 0,   y: 200 }}
+            animate={{ opacity: 1 ,y:0}}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1 }}
+                >    
+            <ListingIte 
+                
                 listing={listing.data} 
                 id={listing.id} 
                 onDelete={()=>onDelete(listing.id)} 
                 onEdit={()=>onEdit(listing.id)}/>
+                </motion.div>
           ))}
         </div>
           )

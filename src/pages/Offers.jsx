@@ -15,7 +15,6 @@ function Offers() {
     const params=useParams()
 
     useEffect(()=>{
-        console.log(params);
 
      const fetchListings=async()=>{
          try{
@@ -97,7 +96,7 @@ function Offers() {
             ):listings && listings.length>0?(
                     <>
                             <main>
-                                <ul className='mt-8 grid grid-cols-1 md:grid-cols-4 gap-2'>
+                                <ul className='mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
 
                                     {listings.map((listing)=>(
                                         <ListingIte key={listing.id} listing={listing.data} id={listing.id}/>

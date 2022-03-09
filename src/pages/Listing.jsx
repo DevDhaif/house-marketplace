@@ -5,7 +5,7 @@ import {getDoc,doc} from 'firebase/firestore'
 import {getAuth} from 'firebase/auth'
 import {db} from '../firebase.config'
 import Spinner from '../components/Spinner'
-import { FaBackward, FaShare, FaShareAlt } from 'react-icons/fa'
+import { FaShareAlt } from 'react-icons/fa'
 import { RiArrowLeftSLine } from 'react-icons/ri'
 
 import {MapContainer,Marker,Popup,TileLayer} from 'react-leaflet' 
@@ -30,7 +30,6 @@ function Listing() {
 
           if(docSnap.exists()){
               setListing(docSnap.data())
-              console.log(listing);
               setLoading(false)
               
           }
@@ -111,7 +110,7 @@ function Listing() {
 
                 <TileLayer  attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url='https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png'/>
-                <Marker  onClick={((e)=>console.log(e))}    position={[listing.geoLocation.lat,listing.geoLocation.lng]}>
+                <Marker      position={[listing.geoLocation.lat,listing.geoLocation.lng]}>
                     <Popup >{listing.location}</Popup>
                     
                 </Marker>

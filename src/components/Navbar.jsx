@@ -18,19 +18,19 @@ function Navbar  () {
         <nav className='w-screen overflow-y-hidden'>
             <ul className='flex justify-around'>
                 <li onClick={()=>navigate('/offers')}>
-                    <OfferIcon className={`${pathMatchRoute('/offers')? 'fill-teal-800':'' } h-12 w-12`}  /> 
+                    <OfferIcon className={`${pathMatchRoute('/offers')? 'fill-teal-800':'' } h-8 w-8`}  /> 
                     <p className={`${pathMatchRoute('/offers')? 'text-teal-800' : ''}`}>Offers</p>
                 </li>
             
                
             
                 <li onClick={()=>navigate('/')}>
-                    <ExploreIcon className={`${pathMatchRoute('/')? 'fill-teal-800':'' } h-12 w-12`} />
+                    <ExploreIcon className={`${pathMatchRoute('/')? 'fill-teal-800':'' } h-8 w-8`} />
                     <p className={`${pathMatchRoute('/')? 'text-teal-800' : ''}`}>Explore</p>
 
                 </li>
                 <li onClick={()=>navigate('/profile')}>
-                    <ProfileIcon className={`${pathMatchRoute('/profile')? 'fill-teal-800':'' } h-12 w-12`} />
+                    <ProfileIcon className={`${pathMatchRoute('/profile')? 'fill-teal-800':'' } h-8 w-8`} />
                     <p className={`${pathMatchRoute('/profile')? 'text-teal-800' : ''}`}>Profile</p>
 
                 </li>

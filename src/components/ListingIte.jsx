@@ -8,9 +8,7 @@ import { AiFillDelete } from 'react-icons/ai';
 
 
 function ListingIte({listing,id,onDelete,onEdit})   {
-    useEffect(()=>{
-        console.log(listing);
-    },[])
+    
   return (
     <li className='shadow-md relative shadow-gray-400 border-gray-600 overflow-hidden    rounded-lg flex flex-col '>
         <Link to={`/category/${listing.type}/${id}`} className='w-full  space-y-4'>

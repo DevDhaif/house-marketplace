@@ -4,8 +4,6 @@ import {getAuth ,sendPasswordResetEmail} from 'firebase/auth'
 import {toast} from 'react-toastify'
 import ArrowRightIcon from '../assets/svg/keyboardArrowRightIcon.svg?component';
 import { BsPerson } from 'react-icons/bs';
-import { RiLockPasswordFill } from 'react-icons/ri';
-import { FaEye } from 'react-icons/fa';
 import SignIn from './SignIn';
 
 function ForgotPassword() {
