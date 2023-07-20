@@ -6,9 +6,11 @@ import {toast } from 'react-toastify'
 import Spinner from '../components/Spinner'
 import ListingIte from '../components/ListingIte'
 import { motion } from "framer-motion"
+import { useTranslation } from 'react-i18next'
 
 
 function Category() {
+    const {t} = useTranslation();
     const [listings,setListings]=useState([])
     const [loading,setLoading]=useState(true)
     const [lastFetchedListing,setLastFetchedListing]=useState(null)
@@ -91,7 +93,7 @@ function Category() {
   return (
     <div className='mx-4 my-4 mb-28'>
         <header className='space-y-4 '>
-            <p className='text-3xl font-semibold '>Places for {params.categoryName === 'rent'? 'rent':'sale'}</p>
+            <p className='text-3xl font-semibold '>{params.categoryName === 'rent'? t('placesForRent') : t('placesForSale')}</p>
         </header>
 
         {loading?(
@@ -117,14 +119,14 @@ function Category() {
                             </main>
 
                             {lastFetchedListing &&(
-                                <p className='cursor-pointer text-center mx-auto mt-4 px-4 py-0.5 bg-green-500 w-28 rounded-md text-white'
+                                <p className='cursor-pointer text-center mx-auto mt-4 px-4 py-1  bg-green-500 w-fit rounded-md text-white'
                                     onClick={onFetchMore}
-                                >Load More</p>
+                                >{t('loadMore')}</p>
                             )}
                     </>
             )
             
-            : (<h1>No places for {params.categoryName} were found</h1>)
+            : (<h1>No places were found for {params.categoryName} were found</h1>)
         }
     </div>
   )

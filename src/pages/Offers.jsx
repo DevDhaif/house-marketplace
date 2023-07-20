@@ -6,9 +6,11 @@ import { toast } from 'react-toastify'
 import Spinner from '../components/Spinner'
 import { motion } from 'framer-motion'
 import ListingIte from '../components/ListingIte'
+import { useTranslation } from 'react-i18next'
 
 
 function Offers() {
+    const {t} =  useTranslation();
     const [listings, setListings] = useState([])
     const [loading, setLoading] = useState(true)
     const [lastFetchedListing, setLastFetchedListing] = useState(null)
@@ -89,7 +91,7 @@ function Offers() {
     return (
         <div className='mx-4 my-4 mb-28 space-y-12 '>
             <header className='mt-12 '>
-                <p className='text-3xl font-semibold '>Offers</p>
+                <p className='text-3xl font-semibold '>{t('offers')}</p>
             </header>
 
             {loading ? (
@@ -116,12 +118,12 @@ function Offers() {
                     {lastFetchedListing && (
                         <p className='cursor-pointer text-center  mx-auto mt-4 px-4 py-0.5 bg-green-500 w-28 rounded-md text-white'
                             onClick={onFetchMore}
-                        >Load More</p>
+                        >{t('loadMore')}</p>
                     )}
                 </>
             )
 
-                : (<h1>No offers were found</h1>)
+                : (<h1>{t('noOffers')}</h1>)
             }
         </div>
     )

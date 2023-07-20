@@ -5,8 +5,10 @@ import { db } from '../firebase.config'
 import {toast} from 'react-toastify'
 import GoogleIcon from '../assets/svg/googleIcon.svg?component';
 import { async } from '@firebase/util'
+import { useTranslation } from 'react-i18next'
 
 function OAuth() {
+    const {t} = useTranslation();
     const navigate=useNavigate()
     const location=useLocation()
 
@@ -36,8 +38,9 @@ function OAuth() {
     }
   return (
     <div className='mt-8 justify-center flex flex-col items-center space-y-2'>
-        <p>Sign {location.pathname === '/sign-up'?'Up':'In'} with</p>
-        <button onClick={onGoogleClick}>
+    <p> {location.pathname === '/sign-up'?t('signUpWith'):t('signInWith')}</p>
+
+    <button onClick={onGoogleClick}>
             <GoogleIcon className="w-8 h-8"/>
         </button>
     </div>

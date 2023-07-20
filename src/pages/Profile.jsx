@@ -9,11 +9,12 @@ import { FaHome} from 'react-icons/fa'
 import { RiArrowRightSLine } from 'react-icons/ri'
 import ListingIte from '../components/ListingIte'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 
 
 
 function Profile() {
-
+const {t} = useTranslation();
   const [loading,setLoading]=useState(true)
   const [listings,setListings]=useState([])
 
@@ -86,14 +87,14 @@ function Profile() {
 
   const onDelete=async(listingId)=>{
     
-    if(window.confirm("Are you sure ?")){
+    if(window.confirm(t('confirm'))){
         await deleteDoc(doc(db,'listings',listingId))
         const updatedListings= listings.filter(
           (listing)=> listing.id !== listingId
         )
 
         setListings(updatedListings)
-        toast.success("Deleted succesfully")
+        toast.success(t('deleted'))
     }
   }
 
@@ -101,22 +102,22 @@ function Profile() {
   return (
     <div className='container mx-auto'>
       <header className='flex justify-between mx-4 my-2'>
-        <h1 className='text-xl font-semibold'>My Profile</h1>
-        <button className='px-2 py-1 bg-green-500 font-semibold text-white rounded-xl' onClick={onLogOut}>Log out</button>
+        <h1 className='text-xl font-semibold'>{t('myProfile')}</h1>
+        <button className='px-2 py-1 bg-green-500 font-semibold text-white rounded-xl' onClick={onLogOut}>{t('logout')}</button>
       </header>
 
       <main className='mx-2 my-4'>
         <div className='flex justify-between font-semibold'>
-          <p>Personal Details:</p>
+          <p> {t('personalDetailes')} </p>
           <p className=' text-green-500 text-sm cursor-pointer' onClick={()=>{
             changeDetails && onSubmit()
             setChangeDetails((prev)=>!prev)
-          }}>{changeDetails? 'Done':'Edit  '}</p>
+          }}>{changeDetails? t('done'):t('edit')}</p>
           </div>
           <div className='justify-center   flex'>
             <ProfileIcon className="w-16 h-16 rounded-full" />
           </div>
-          <h2 className='w-full text-center border-b-2 border-solid border-green-500 my-4 px-2'><span className='bg-slate-100 px-2 max-w-xs'>{(auth.currentUser.displayName).toUpperCase()} Profile</span></h2>
+          <h2 className='w-full text-center border-b-2 border-solid border-green-500 my-4 px-2'><span className='bg-slate-100 px-2 max-w-xs'>{(auth.currentUser.displayName).toUpperCase()} {t('profile')}</span></h2>
 
           <form className='my-8  space-y-4 max-w-xl mx-auto '>
             <input type="text" id='name' 
@@ -134,7 +135,7 @@ function Profile() {
 
         <Link to="/create-listing" className='w-full flex justify-between  items-center mt-8 px-4 py-2 bg-gray-200 rounded-lg'>
           <FaHome/>
-        <p>Sell or rent home</p>
+        <p>{t('sellOrRent')}</p>
           <RiArrowRightSLine/>
         </Link>
 

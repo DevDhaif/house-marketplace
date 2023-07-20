@@ -5,7 +5,7 @@ import { getDoc, doc } from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 import { db } from '../firebase.config'
 import Spinner from '../components/Spinner'
-import { FaShareAlt } from 'react-icons/fa'
+import { FaChair, FaShareAlt } from 'react-icons/fa'
 import { RiArrowLeftSLine, RiCheckFill } from 'react-icons/ri'
 
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
@@ -102,7 +102,7 @@ function Listing() {
                     )}
                     {listing.furnished && (
                         <li className='flex space-x-2 items-center'>
-                            <RiCheckFill className='fill-blue-600 w-6 h-6' />
+                            <FaChair className='fill-blue-600 w-6 h-6' />
                             Furnished
                         </li>
                     )}

@@ -14,9 +14,11 @@ import {
     TileLayer,
   } from 'react-leaflet'
 import Listing from './Listing'
+import { useTranslation } from 'react-i18next'
 
 
 function CreateListing() {
+    const { t } = useTranslation();
     const [geoLocationEnabled,setGeoLocationEnabled]=useState(false)
     const [loading,setLoading]=useState(false)
 const[formData,setFormData]=useState({
@@ -222,14 +224,14 @@ const[formData,setFormData]=useState({
     return (
     <div className='w-full   px-4'>
         <header>
-            <p className='text-2xl font-semibold'>Create Listing</p>
+                <p className='text-2xl font-semibold'>{t('createListing')}</p>
         </header>
 
         <main >
 
             <form onSubmit={onSubmit} className="mt-4 flex flex-col  space-y-2 ">
 
-                <label htmlFor="" className='font-medium '>Sell / Rent</label>
+                    <label htmlFor="" className='font-medium '>{t('sale') / t('rent')}</label>
                 <div className='flex space-x-4 px-2 mt-1 '>
                     <button 
                     type='button' 
@@ -237,18 +239,18 @@ const[formData,setFormData]=useState({
                     id="type"
                     value="sale"
                     onClick={onMutate}>
-                        Sell
+                            {t('sale')}
                      </button>
                     <button type='button' 
                     className={`px-6 py-1 font-semibold rounded-lg shadow-md shadow-gray-300 ${type==='rent'?'bg-green-500 text-white':'bg-white'} `}
                     id="type"
                     value="rent"
                     onClick={onMutate}>
-                    Rent 
+                            {t('rent')} 
                     </button>
                 </div>
 
-                <label htmlFor="" className='font-medium'>Name</label>
+                    <label htmlFor="" className='font-medium'>{t('name')}</label>
                 <input
                 className='w-2/3 p-1 rounded-md border-none outline-none' 
                 type="text"
@@ -262,7 +264,7 @@ const[formData,setFormData]=useState({
 
             <div className=' flex mt-4 space-x-4'>
                 <div className=' flex flex-col space-y-1'>
-                    <label htmlFor="" className='font-medium '>Bathrooms</label>
+                            <label htmlFor="" className='font-medium '>{t('bathrooms')}</label>
                     <input 
                     className='w-12 py-1 text-center rounded-md border-none outline-none'
                     type="number"
@@ -275,7 +277,7 @@ const[formData,setFormData]=useState({
                 </div>
 
                 <div className=' flex flex-col space-y-1'>
-                    <label htmlFor="" className='font-medium '>Bedrooms</label>
+                            <label htmlFor="" className='font-medium '>{t('bedrooms')}</label>
                     <input 
                     className='w-12 py-1 text-center rounded-md border-none outline-none'
                     type="number"
@@ -288,7 +290,7 @@ const[formData,setFormData]=useState({
                 </div>
             </div>
 
-            <label htmlFor="" className='block mt-4 font-medium '>Parking Spot</label>
+                    <label htmlFor="" className='block mt-4 font-medium '>{t('parkingSpot')}</label>
             <div className='flex space-x-4 px-2 mt-1 '>
                 <button 
                 className={`px-6 py-1 font-semibold rounded-lg shadow-md shadow-gray-300 ${parking?'bg-green-500 text-white':'bg-white'}`}
@@ -297,7 +299,7 @@ const[formData,setFormData]=useState({
                 value={true}
                 onClick={onMutate}
                 >
-                    Yes
+                            {t('yes')}
                 </button>
 
                 <button 
@@ -307,11 +309,11 @@ const[formData,setFormData]=useState({
                 value={false}
                 onClick={onMutate}
                 >
-                    No
+                            {t('no')}
                 </button>
             </div>
 
-            <label htmlFor="" className='block mt-4 font-medium '>Furnished</label>
+                    <label htmlFor="" className='block mt-4 font-medium '>{t('furnished')}</label>
             <div className='flex space-x-4 px-2 mt-1 '>
                 <button 
                 className={`px-6 py-1 font-semibold rounded-lg shadow-md shadow-gray-300 ${furnished?'bg-green-500 text-white':'bg-white'}`}
@@ -320,7 +322,7 @@ const[formData,setFormData]=useState({
                 value={true}
                 onClick={onMutate}
                 >
-                    Yes
+                            {t('yes')}
                 </button>
 
                 <button 
@@ -330,11 +332,12 @@ const[formData,setFormData]=useState({
                 value={false}
                 onClick={onMutate}
                 >
-                    No
+                            {t('no')}
+
                 </button>
             </div>
 
-            <label htmlFor="" className='block mt-4 font-medium '>Address</label>
+                    <label htmlFor="" className='block mt-4 font-medium '>{t('address')}</label>
             <textarea
             className='w-2/3 rounded-lg mt-2'
             type='text'
@@ -346,7 +349,7 @@ const[formData,setFormData]=useState({
 
            
 
-            <label htmlFor="" className='block mt-4 font-medium '>Location on map</label>
+                    <label htmlFor="" className='block mt-4 font-medium '>{t('locationOnMap')}</label>
             <div className='h-56 w-12/12'>
             <MapContainer style={{height:'100%',width:'100%'}} 
             
@@ -367,7 +370,7 @@ const[formData,setFormData]=useState({
         </div>
 
 
-            <label htmlFor="" className='block mt-4 font-medium '>Offer</label>
+                    <label htmlFor="" className='block mt-4 font-medium '>{t('offer')}</label>
             <div className='flex space-x-4 px-2 mt-1 '>
                 <button 
                 className={`px-6 py-1 font-semibold rounded-lg shadow-md shadow-gray-300 ${offer?'bg-green-500 text-white':'bg-white'}`}
@@ -376,7 +379,7 @@ const[formData,setFormData]=useState({
                 value={true}
                 onClick={onMutate}
                 >
-                    Yes
+                            {t('yes')}
                 </button>
 
                 <button 
@@ -386,12 +389,12 @@ const[formData,setFormData]=useState({
                 value={false}
                 onClick={onMutate}
                 >
-                    No
+                            {t('no')}
                 </button>
             </div>
 
 
-            <label htmlFor="" className='block mt-4 font-medium '>Regular Price</label>
+                    <label htmlFor="" className='block mt-4 font-medium '>{t('regularPrice')}</label>
             <div className='flex items-center  space-x-2'>
                 <input 
                 type="number" 
@@ -404,13 +407,13 @@ const[formData,setFormData]=useState({
                 required
                 />
                 {type==='rent' && (
-                    <p className='font-medium'> $ / Month</p>
+                            <p className='font-medium'> $ / {t('month')}</p>
                 )}
             </div>
 
             {offer &&(
                 <div>
-                <label htmlFor="" className='block mt-4 font-medium '>Discounted Price</label>
+                            <label htmlFor="" className='block mt-4 font-medium '>{t('discountPrice')}</label>
                 <div className='flex items-center  space-x-2'>
                     <input 
                     type="number" 
@@ -427,8 +430,8 @@ const[formData,setFormData]=useState({
             )}
 
 
-            <label htmlFor="" className='block mt-4 font-medium '>Images</label>
-            <p className='my-2'>First image will be the cover (only 6 images)</p>
+                    <label htmlFor="" className='block mt-4 font-medium '>{t('images')}</label>
+                    <p className='my-2'>{t('imagesLimit')}</p>
             <input
             className='file:mr-2  w-full file:px-2 file:py-1 px-4 py-2 file:font-medium bg-white rounded-md file:bg-green-500 file:border-none file:text-white file:rounded-lg' 
             type="file"
@@ -441,7 +444,7 @@ const[formData,setFormData]=useState({
             />
             
             <div className='w-full flex items-center'>
-                <button className='mt-8 px-4 py-1 bg-green-500 text-white font-medium rounded-md shadow-md shadow-gray-300 w-2/3 mx-auto' type="submit">Create Listing</button>
+                        <button className='mt-8 px-4 py-1 bg-green-500 text-white font-medium rounded-md shadow-md shadow-gray-300 w-2/3 mx-auto' type="submit">{t('createListing')}</button>
             </div>
             
             </form>
