@@ -21,7 +21,7 @@ function App() {
   return (
     <>
       <Router>
-      <div className='min-h-screen'>
+      <div className='min-h-screen container mx-auto'>
         <Routes>
         
           <Route path='/' element={<Explore/>}/>

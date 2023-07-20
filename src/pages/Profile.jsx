@@ -99,7 +99,7 @@ function Profile() {
 
   const onEdit=(listingId)=>navigate(`/edit-listing/${listingId}`)
   return (
-    <div className='mb-12'>
+    <div className='container mx-auto'>
       <header className='flex justify-between mx-4 my-2'>
         <h1 className='text-xl font-semibold'>My Profile</h1>
         <button className='px-2 py-1 bg-green-500 font-semibold text-white rounded-xl' onClick={onLogOut}>Log out</button>
@@ -111,15 +111,14 @@ function Profile() {
           <p className=' text-green-500 text-sm cursor-pointer' onClick={()=>{
             changeDetails && onSubmit()
             setChangeDetails((prev)=>!prev)
-          }}>{changeDetails? 'Done':'change  '}</p>
+          }}>{changeDetails? 'Done':'Edit  '}</p>
           </div>
           <div className='justify-center   flex'>
             <ProfileIcon className="w-16 h-16 rounded-full" />
           </div>
           <h2 className='w-full text-center border-b-2 border-solid border-green-500 my-4 px-2'><span className='bg-slate-100 px-2 max-w-xs'>{(auth.currentUser.displayName).toUpperCase()} Profile</span></h2>
 
-        <div>
-          <form className='my-2 space-y-2'>
+          <form className='my-8  space-y-4 max-w-xl mx-auto '>
             <input type="text" id='name' 
             className={`w-full px-2 py-2 my-0.5 outline-none    ${!changeDetails?'':'bg-gray-200'}`}  
             disabled={!changeDetails}
@@ -132,7 +131,6 @@ function Profile() {
             value={email}
             onChange={onChange}/>
           </form>
-        </div>
 
         <Link to="/create-listing" className='w-full flex justify-between  items-center mt-8 px-4 py-2 bg-gray-200 rounded-lg'>
           <FaHome/>
@@ -145,14 +143,14 @@ function Profile() {
           (
             <div className='mt-4 p-4 space-y-4 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'
             >
-          {listings.map((listing)=>(
+          {listings.map((listing,i)=>(
             <motion.div 
                                         
             key={listing.id}
-            initial={{ opacity: 0,   y: 200 }}
+            initial={{ opacity: 0,   y: 200*i + 200 }}
             animate={{ opacity: 1 ,y:0}}
             exit={{ opacity: 0 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 1.5 }}
                 >    
             <ListingIte 
                 
