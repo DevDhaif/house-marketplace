@@ -126,7 +126,7 @@ function Category() {
                     </>
             )
             
-            : (<h1>No places were found for {params.categoryName} were found</h1>)
+            : (<h1>t('NoPlacesWereFoundFor') {params.categoryName === 'rent' ? t('rent') : t('sale')}</h1>)
         }
     </div>
   )
