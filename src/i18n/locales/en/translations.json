@@ -65,6 +65,8 @@
     "emailResetError" : "Could not send reset Email!",
     "sendResetLink" : "Send Reset Link",
     "sellOrRent" : "Sell or Rent Home",
-    "wrongCreditentials" : "Wrong Email or Password!"
+    "wrongCreditentials" : "Wrong Email or Password!",
+    "lang" : "language"
+
 
 }

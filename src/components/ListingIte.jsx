@@ -5,6 +5,7 @@ import BathtubIcon from '../assets/svg/bathtubIcon.svg?component';
 import { list } from 'postcss';
 import { FaBed, FaEdit } from 'react-icons/fa';
 import { AiFillDelete } from 'react-icons/ai';
+import { useTranslation } from 'react-i18next';
 
 
 function ListingIte({ listing, id, onDelete, onEdit }) {
