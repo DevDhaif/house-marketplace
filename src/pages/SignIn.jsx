@@ -55,22 +55,22 @@ function SignIn() {
       <main className="container mx-auto max-w-2xl py-8 px-4 outline-dashed outline-1 outline-blue-400/50  rounded shadow-md  w-full">
         <form className="space-y-8" onSubmit={onSubmit}>
           <label htmlFor="email" className="relative text-gray-400 focus-within:text-gray-600 block w-full">
-            <BsPerson className=" w-6 h-6 absolute top-1/2 transform -translate-y-1/2 left-0 ml-2" />
-            <input className="pl-10 py-3 rounded-lg  w-full outline-none" type="email" name="email" id="email" value={email} placeholder={t('email')} onChange={onChange} />
+            <BsPerson className=" w-6 h-6 absolute top-1/2 transform -translate-y-1/2 ltr:left-0 rtl:right-0 ltr:ml-2 rtl:mr-2" />
+            <input className="ltr:pl-10 rtl:pr-10 py-3 rounded-lg  w-full outline-none" type="email" name="email" id="email" value={email} placeholder={t('email')} onChange={onChange} />
           </label>
           <label htmlFor="email" className="relative flex text-gray-400 focus-within:text-gray-600 items-center w-full">
-            <RiLockPasswordFill className="pointer-events-none w-6 h-6 absolute top-1/2 transform -translate-y-1/2 left-0 ml-2" />
-            <input className="pl-10 py-3 rounded-lg  w-full outline-none" type={showPassword ? 'text' : 'password'} name="password" id="password" value={password} placeholder={t('password')} onChange={onChange} />
-            <FaEye className="h-6 w-6 absolute right-0 mr-2" onClick={() => { setShowPassword((prevState) => !prevState) }} />
+            <RiLockPasswordFill className="pointer-events-none w-6 h-6 absolute top-1/2 transform -translate-y-1/2 ltr:left-0 rtl:right-0 ltr:ml-2 rtl:mr-2 " />
+            <input className="ltr:pl-10 rtl:pr-10 py-3 rounded-lg  w-full outline-none" type={showPassword ? 'text' : 'password'} name="password" id="password" value={password} placeholder={t('password')} onChange={onChange} />
+            <FaEye className="h-6 w-6 absolute ltr:right-0 rtl:left-0 ltr:mr-2 rtl:ml-2" onClick={() => { setShowPassword((prevState) => !prevState) }} />
           </label>
 
           <Link to={'/forgot-password'} className="text-green-700 text-lg  text-right py-4">
             <p className="my-4 font-semibold">{t('forgotPassword')}</p>
           </Link>
 
-          <button type="submit" className="flex space-x-4 w-full justify-between md:justify-start items-center">
+          <button type="submit" className="flex gap-x-4 w-full justify-between   md:justify-start items-center">
             <p className="text-lg font-semibold">{t('signin')}</p>
-            <span className=""><IoIosArrowDroprightCircle className="mt-1 w-8 h-8  rounded-full fill-green-500" /></span>
+            <span className=""><IoIosArrowDroprightCircle className="mt-1 w-8 h-8 rtl:-scale-x-90  rounded-full fill-green-500" /></span>
           </button>
         </form>
 

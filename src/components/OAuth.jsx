@@ -38,7 +38,7 @@ function OAuth() {
     }
   return (
     <div className='mt-8 justify-center flex flex-col items-center space-y-2'>
-    <p> {location.pathname === '/sign-up'?t('signUpWith'):t('signInWith')}</p>
+    <p> {location.pathname === '/sign-up'?t('signupWith'):t('signInWith')}</p>
 
     <button onClick={onGoogleClick}>
             <GoogleIcon className="w-8 h-8"/>

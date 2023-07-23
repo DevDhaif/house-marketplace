@@ -23,6 +23,7 @@ function ListingIte({ listing, id, onDelete, onEdit }) {
                     }
                         {listing.type === "rent" ? `/ ${t('month')}` : ""}
                     </p>
+                    <p>{listing.currency}</p>
                     <div className='flex space-x-4'>
                         <FaBed size={25} />
                         <p >{listing.bedrooms}{listing.bedrooms > 1 ? t('bedrooms') : t('bedroom')}</p>

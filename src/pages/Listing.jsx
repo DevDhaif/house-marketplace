@@ -75,10 +75,11 @@ function Listing() {
                 <p className='right-0 px-2 text-white py-1 mt-2 mx-1 rounded-md bg-green-500 absolute'>Link Copied</p>
             )}
             <div className='flex relative flex-col space-y-4'>
-                <p>{listing.name} - $ {listing.offer ?
+                <>{listing.name} - $ {listing.offer ?
                     listing.discountedPrice.toString().replace(/\B(?=(\d{2})+(?!\d))/g, ',') :
                     listing.regularPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-                }</p>
+                    
+                }</>
 
                 <p>{listing.location}</p>
                 <div className='flex justify-start space-x-4 '>

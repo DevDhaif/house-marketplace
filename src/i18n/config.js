@@ -3,8 +3,8 @@ import { initReactI18next } from 'react-i18next';
 import * as en from './locales/en/translations.json';
 import * as ar from './locales/ar/translations.json';
 i18n.use(initReactI18next).init({
-    fallbackLng: 'ar',
-    lng: 'ar',
+    fallbackLng: 'en',
+    lng: 'en',
     resources: {
         en: {
             translations: en
