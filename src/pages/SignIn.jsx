@@ -48,12 +48,12 @@ function SignIn() {
 
   }
   return (
-    <div className="w-full relative px-4 bg-gray-100 space-y-12 flex flex-col justify-center  h-full min-h-screen">
+    <div className="w-full relative px-4 bg-gray-100 gap-y-12 flex flex-col justify-center  h-full min-h-screen">
       <header className="px-4 py-6 text-center mx-auto">
         <h1 className="text-xl">{t('welcomeBack')}</h1>
       </header>
       <main className="container mx-auto max-w-2xl py-8 px-4 outline-dashed outline-1 outline-blue-400/50  rounded shadow-md  w-full">
-        <form className="space-y-8" onSubmit={onSubmit}>
+        <form className="gap-y-8" onSubmit={onSubmit}>
           <label htmlFor="email" className="relative text-gray-400 focus-within:text-gray-600 block w-full">
             <BsPerson className=" w-6 h-6 absolute top-1/2 transform -translate-y-1/2 ltr:left-0 rtl:right-0 ltr:ml-2 rtl:mr-2" />
             <input className="ltr:pl-10 rtl:pr-10 py-3 rounded-lg  w-full outline-none" type="email" name="email" id="email" value={email} placeholder={t('email')} onChange={onChange} />
@@ -76,7 +76,7 @@ function SignIn() {
 
 
         <OAuth />
-        <div className="flex  space-x-4  justify-center mt-4">
+        <div className="flex  gap-x-4  justify-center mt-4">
           <p className="text-base font-semibold text-gray-400 text-center mt-4">{t('dontHaveAccount')}</p>
           <Link to={'/sign-up'}>
             <p className="text-base font-semibold text-green-700 text-center mt-4">{t('signup')}</p>

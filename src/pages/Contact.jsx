@@ -31,18 +31,18 @@ function Contact() {
     
     const onChange = (e) => {setMessage(e.target.value)}
     return (
-    <div className='p-4 space-y-8'>
+        <div className='p-4 gap-y-8'>
         <header className=''>
                 <p className='text-xl font-semibold'> {t('contactOwner')}</p>
         </header>
         {landlord !== null &&(
-            <main className='space-y-8'>
+                <main className='gap-y-8'>
                 <div>
                         <p className='font-medium'>{t('contact')} {landlord?.name}</p>
                 </div>
 
-                <form className='w-full flex-col flex items-center space-y-4'>
-                    <div className='flex w-full flex-col space-y-4'>
+                    <form className='w-full flex-col flex items-center gap-y-4'>
+                        <div className='flex w-full flex-col gap-y-4'>
                             <label htmlFor="message" className=''>{t('message')}</label>
                         <textarea 
                         onChange={onChange}

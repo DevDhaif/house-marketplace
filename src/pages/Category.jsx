@@ -92,7 +92,7 @@ function Category() {
 
   return (
     <div className='mx-4 my-4 mb-28'>
-        <header className='space-y-4 '>
+          <header className='gap-y-4 '>
             <p className='text-3xl font-semibold '>{params.categoryName === 'rent'? t('placesForRent') : t('placesForSale')}</p>
         </header>
 
@@ -100,7 +100,7 @@ function Category() {
             <Spinner/>
             ): listings.length>0?(
                     <>
-                            <main className='space-y-4'>
+                      <main className='gap-y-4'>
                                 <ul className='my-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
                                     {listings.map((listing)=>(
                                         <motion.div 

@@ -21,7 +21,7 @@ function LangToggle() {
     }
     return (
         <div className=' '>
-            {show && <ul className='space-y-2 fixed bottom-14 ltr:right-[4%] rtl:left-[4%] w-20 py-2 rounded transition-all duration-300 transform  bg-gray-700 text-white flex flex-col items-center '>
+            {show && <ul className='gap-y-2 fixed bottom-14 ltr:right-[4%] rtl:left-[4%] w-20 py-2 rounded transition-all duration-300 transform  bg-gray-700 text-white flex flex-col items-center '>
                 <button onClick={changeLang} value='ar'>
                     عربي
                 </button>
@@ -29,7 +29,7 @@ function LangToggle() {
                     EN
                 </button>
             </ul>}
-            <div onClick={toggle} className='flex items-center justify-center flex-col space-y-2'>
+            <div onClick={toggle} className='flex items-center justify-center flex-col gap-y-2'>
                 <FaLanguage className='cursor-pointer fill-blue-400  text-lime-800 w-12 h-12' />
 
             </div>

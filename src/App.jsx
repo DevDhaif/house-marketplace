@@ -6,6 +6,7 @@ import './index.css'
 import Navbar from './components/Navbar'
 import PrivateRoute from './components/PrivateRoute';
 import Explore from './pages/Explore'
+import Test from './pages/Test'
 import Category from './pages/Category'
 import Profile from './pages/Profile'
 import SignIn from './pages/SignIn'
@@ -17,6 +18,7 @@ import Listing from './pages/Listing';
 import Contact from './pages/Contact';
 import EditListing from './pages/EditListing';
 import { useEffect } from 'react';
+import Logo from './assets/svg/logo.svg?component';
 function App() {
 useEffect(()=>{
   document.body.dir='ltr'
@@ -24,11 +26,16 @@ useEffect(()=>{
   return (
     <>
       <Router>
-      <div className='min-h-screen container mx-auto'>
+      <div className='min-h-screen relative container   mx-auto'>
+      <div className=" grid place-items-center ltr:ml-8 rtl:mr-8  w-fit px-1 ">
+          <Logo className="h12 h-12" />
+      </div>
         <Routes>
         
           <Route path='/' element={<Explore/>}/>
           <Route path='/offers' element={<Offers/>}/>
+          <Route path='/test' element={<Test/>}/>
+
           <Route path='/category/:categoryName' element={<Category/>}/>
           <Route path='/profile' element={<PrivateRoute/>}>
               <Route path='/profile' element={<Profile/>}/>

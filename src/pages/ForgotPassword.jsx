@@ -34,7 +34,7 @@ setEmail(e.target.value)
           <p className='text-xl font-semibold text-center'>{t('forgotPassword')}</p>
         </header>
         <main className='mx-4 my-6 '>
-        <form className="space-y-4" onSubmit={onSubmit}>
+        <form className="gap-y-4" onSubmit={onSubmit}>
           <label htmlFor="email" className="relative text-gray-400 focus-within:text-gray-600 block w-full">
               <BsPerson className=" w-6 h-6 absolute top-1/2 transform -translate-y-1/2 left-0 ml-2"/>
               <input className="pl-10 py-3 rounded-lg  w-full outline-none" type="email" name="email" id="email" value={email} placeholder={t('email')} onChange={onChange}/>

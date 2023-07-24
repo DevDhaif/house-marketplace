@@ -119,7 +119,7 @@ const {t} = useTranslation();
           </div>
           <h2 className='w-full text-center border-b-2 border-solid border-green-500 my-4 px-2'><span className='bg-slate-100 px-2 max-w-xs'>{(auth.currentUser.displayName).toUpperCase()} {t('profile')}</span></h2>
 
-          <form className='my-8  space-y-4 max-w-xl mx-auto '>
+        <form className='my-8  gap-y-4 max-w-xl mx-auto '>
             <input type="text" id='name' 
             className={`w-full px-2 py-2 my-0.5 outline-none    ${!changeDetails?'':'bg-gray-200'}`}  
             disabled={!changeDetails}
@@ -142,7 +142,7 @@ const {t} = useTranslation();
         {!loading && listings?.length>0 &&
         
           (
-            <div className='mt-4 p-4 space-y-4 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'
+          <div className='mt-4 p-4 gap-y-4 grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'
             >
           {listings.map((listing,i)=>(
             <motion.div 

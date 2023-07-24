@@ -74,7 +74,7 @@ function Listing() {
             {sharedLink && (
                 <p className='right-0 px-2 text-white py-1 mt-2 mx-1 rounded-md bg-green-500 absolute'>Link Copied</p>
             )}
-            <div className='flex relative flex-col space-y-4'>
+            <div className='flex relative flex-col gap-y-4'>
                 <>{listing.name} - $ {listing.offer ?
                     listing.discountedPrice.toString().replace(/\B(?=(\d{2})+(?!\d))/g, ',') :
                     listing.regularPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
@@ -82,13 +82,13 @@ function Listing() {
                 }</>
 
                 <p>{listing.location}</p>
-                <div className='flex justify-start space-x-4 '>
+                <div className='flex justify-start gap-x-4 '>
                     <p className='text-xs bg-green-500 text-white px-2 py-0.5  rounded-md w-16'>For {listing.type === 'rent' ? 'Rent' : 'Sale'}</p>
                     {listing.offer && (
                         <p className='text-xs bg-gray-800 text-white px-2 py-0.5  rounded-md w-24'>${listing.regularPrice - listing.discountedPrice} discount</p>
                     )}
                 </div>
-                <ul className=' space-y-2 '>
+                <ul className=' gap-y-2 '>
                     <li>
                         <span className='text-blue-600'>{listing.bathrooms} </span>{listing.bathrooms > 1 ? ` Bathrooms` : ' Bathroom'}
                     </li>
@@ -96,13 +96,13 @@ function Listing() {
                         <span className='text-blue-600'>{listing.bedrooms} </span>{listing.bedrooms > 1 ? ` Bedrooms` : ' Bedroom'}
                     </li>
                     {listing.parkinSpot && (
-                        <li className='flex space-x-2 items-center'>
+                        <li className='flex gap-x-2 items-center'>
                             <RiCheckFill className='fill-blue-600 w-6 h-6' />
                             Parking Spot
                         </li>
                     )}
                     {listing.furnished && (
-                        <li className='flex space-x-2 items-center'>
+                        <li className='flex gap-x-2 items-center'>
                             <FaChair className='fill-blue-600 w-6 h-6' />
                             Furnished
                         </li>

@@ -264,10 +264,10 @@ const[formData,setFormData]=useState({
 
         <main >
 
-            <form onSubmit={onSubmit} className="mt-4 flex flex-col  space-y-2 ">
+                <form onSubmit={onSubmit} className="mt-4 flex flex-col  gap-y-2 ">
 
                 <label htmlFor="" className='font-medium '>{t('sale') / t('rent')}</label>
-                <div className='flex space-x-4 px-2 mt-1 '>
+                    <div className='flex gap-x-4 px-2 mt-1 '>
                     <button 
                     type='button' 
                     className={`  font-semibold px-6 py-1 shadow-md shadow-gray-300  bg-white rounded-lg ${type==='sale'?'bg-green-500 text-white':'bg-white'}`}
@@ -297,8 +297,8 @@ const[formData,setFormData]=useState({
                 required  />
             
 
-            <div className=' flex mt-4 space-x-4'>
-                <div className=' flex flex-col space-y-1'>
+                    <div className=' flex mt-4 gap-x-4'>
+                        <div className=' flex flex-col gap-y-1'>
                     <label htmlFor="" className='font-medium '>{t('bathrooms')}</label>
                     <input 
                     className='w-12 py-1 text-center rounded-md border-none outline-none'
@@ -311,7 +311,7 @@ const[formData,setFormData]=useState({
                     required />
                 </div>
 
-                <div className=' flex flex-col space-y-1'>
+                        <div className=' flex flex-col gap-y-1'>
                     <label htmlFor="" className='font-medium '>{t('bedrooms')}</label>
                     <input 
                     className='w-12 py-1 text-center rounded-md border-none outline-none'
@@ -326,7 +326,7 @@ const[formData,setFormData]=useState({
             </div>
 
             <label htmlFor="" className='block mt-4 font-medium '>{t('parkingSpot')}</label>
-            <div className='flex space-x-4 px-2 mt-1 '>
+                    <div className='flex gap-x-4 px-2 mt-1 '>
                 <button 
                 className={`px-6 py-1 font-semibold rounded-lg shadow-md shadow-gray-300 ${parking?'bg-green-500 text-white':'bg-white'}`}
                 type='button'
@@ -349,7 +349,7 @@ const[formData,setFormData]=useState({
             </div>
 
             <label htmlFor="" className='block mt-4 font-medium '>{t('furnished')}</label>
-            <div className='flex space-x-4 px-2 mt-1 '>
+                    <div className='flex gap-x-4 px-2 mt-1 '>
                 <button 
                 className={`px-6 py-1 font-semibold rounded-lg shadow-md shadow-gray-300 ${furnished?'bg-green-500 text-white':'bg-white'}`}
                 type='button'
@@ -405,7 +405,7 @@ const[formData,setFormData]=useState({
 
 
             <label htmlFor="" className='block mt-4 font-medium '>{t('offer')}</label>
-            <div className='flex space-x-4 px-2 mt-1 '>
+                    <div className='flex gap-x-4 px-2 mt-1 '>
                 <button 
                 className={`px-6 py-1 font-semibold rounded-lg shadow-md shadow-gray-300 ${offer?'bg-green-500 text-white':'bg-white'}`}
                 type='button'
@@ -429,7 +429,7 @@ const[formData,setFormData]=useState({
 
 
             <label htmlFor="" className='block mt-4 font-medium '>{t('regularPrice')}</label>
-            <div className='flex items-center  space-x-2'>
+                    <div className='flex items-center  gap-x-2'>
                 <input 
                 type="number" 
                 className='w-24 py-1 text-center rounded-md border-none outline-none'
@@ -448,7 +448,7 @@ const[formData,setFormData]=useState({
             {offer &&(
                 <div>
                 <label htmlFor="" className='block mt-4 font-medium '>{t('discountPrice')}</label>
-                <div className='flex items-center  space-x-2'>
+                            <div className='flex items-center  gap-x-2'>
                     <input 
                     type="number" 
                     className='w-18 py-1 text-center rounded-md border-none outline-none'

@@ -89,7 +89,7 @@ function Offers() {
 
 
     return (
-        <div className='mx-4 my-4 mb-28 space-y-12 '>
+        <div className='mx-4 my-4 mb-28 gap-y-12 '>
             <header className='mt-12 '>
                 <p className='text-3xl font-semibold '>{t('offers')}</p>
             </header>
