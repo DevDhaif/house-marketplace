@@ -52,7 +52,8 @@ function Slider() {
         </div>
     }
   return (
-    <motion.div 
+    <motion.div
+    id='slider' 
     initial={{ opacity: 0 ,y: -1000}}
         animate={{ opacity: 1, y:0 }}
         exit={{ opacity: 0 }}
