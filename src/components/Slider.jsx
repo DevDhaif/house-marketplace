@@ -60,7 +60,7 @@ function Slider() {
     className='mt-4 px-4 py-2  rounded-md shadow-md'>
     
         <Swiper loop={true} grabCursor={true} dir="rtl"
-        
+            navigation={true}
         autoplay={{
             delay: 2500,
             disableOnInteraction: false,
