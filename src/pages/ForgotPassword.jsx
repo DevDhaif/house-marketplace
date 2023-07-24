@@ -39,7 +39,7 @@ setEmail(e.target.value)
               <BsPerson className=" w-6 h-6 absolute top-1/2 transform -translate-y-1/2 left-0 ml-2"/>
               <input className="pl-10 py-3 rounded-lg  w-full outline-none" type="email" name="email" id="email" value={email} placeholder={t('email')} onChange={onChange}/>
           </label>
-          <div  className="mt-8 flex justify-end text-green-500 font-semibold">
+          <div className="mt-8 flex justify-end text-blue-500 font-semibold">
             <Link to={<SignIn/>}>{t('signin')}</Link>
           </div>
 
@@ -47,7 +47,7 @@ setEmail(e.target.value)
           <div className='flex justify-between text-lg font-semibold'> 
           {t('sendResetLink')}
               <button>
-                <ArrowRightIcon className="fill-white bg-green-500 rounded-full "/>
+                <ArrowRightIcon className="fill-white bg-blue-500 rounded-full " />
               </button>
           </div>
          </div>

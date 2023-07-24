@@ -64,13 +64,13 @@ function SignIn() {
             <FaEye className="h-6 w-6 absolute ltr:right-0 rtl:left-0 ltr:mr-2 rtl:ml-2" onClick={() => { setShowPassword((prevState) => !prevState) }} />
           </label>
 
-          <Link to={'/forgot-password'} className="text-green-700 text-lg  text-right py-4">
+          <Link to={'/forgot-password'} className="text-blue-700 text-lg  text-right py-4">
             <p className="my-4 font-semibold">{t('forgotPassword')}</p>
           </Link>
 
           <button type="submit" className="flex gap-x-4 w-full justify-between   md:justify-start items-center">
             <p className="text-lg font-semibold">{t('signin')}</p>
-            <span className=""><IoIosArrowDroprightCircle className="mt-1 w-8 h-8 rtl:-scale-x-90  rounded-full fill-green-500" /></span>
+            <span className=""><IoIosArrowDroprightCircle className="mt-1 w-8 h-8 rtl:-scale-x-90  rounded-full fill-blue-500" /></span>
           </button>
         </form>
 
@@ -79,7 +79,7 @@ function SignIn() {
         <div className="flex  gap-x-4  justify-center mt-4">
           <p className="text-base font-semibold text-gray-400 text-center mt-4">{t('dontHaveAccount')}</p>
           <Link to={'/sign-up'}>
-            <p className="text-base font-semibold text-green-700 text-center mt-4">{t('signup')}</p>
+            <p className="text-base font-semibold text-blue-700 text-center mt-4">{t('signup')}</p>
           </Link>
         </div>
       </main>

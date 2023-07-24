@@ -54,8 +54,10 @@ function CreateListing() {
     } = formData
     const auth = getAuth()
     const navigate = useNavigate()
-    const isMounted = useRef(true)
+    const params = useParams()
 
+    const isMounted = useRef(true)
+    
     useEffect(() => {
         if (isMounted) {
             onAuthStateChanged(auth, (user) => {
@@ -204,22 +206,22 @@ function CreateListing() {
             </header>
             <main >
                 <form onSubmit={onSubmit} className="mt-4 flex flex-col  gap-y-2 ">
-                    <label htmlFor="" className='font-medium '>{t('sale') / t('rent')}</label>
+                    <label htmlFor="" className='font-medium '>{t('forSale')} / {t('forRent')}</label>
                     <div className='flex gap-x-4 px-2 mt-1 '>
                         <button
                             type='button'
-                            className={`  font-semibold px-6 py-1 shadow-md shadow-gray-300  bg-white rounded-lg ${type === 'sale' ? 'bg-green-500 text-white' : 'bg-white'}`}
+                            className={`  font-semibold px-6 py-1 shadow-md shadow-gray-300  bg-white rounded-lg ${type === 'sale' ? 'bg-blue-500 text-white' : 'bg-white'}`}
                             id="type"
                             value="sale"
                             onClick={onMutate}>
-                            {t('sale')}
+                            {t('forSale')}
                         </button>
                         <button type='button'
-                            className={`px-6 py-1 font-semibold rounded-lg shadow-md shadow-gray-300 ${type === 'rent' ? 'bg-green-500 text-white' : 'bg-white'} `}
+                            className={`px-6 py-1 font-semibold rounded-lg shadow-md shadow-gray-300 ${type === 'rent' ? 'bg-blue-500 text-white' : 'bg-white'} `}
                             id="type"
                             value="rent"
                             onClick={onMutate}>
-                            {t('rent')}
+                            {t('forRent')}
                         </button>
                     </div>
                     <label htmlFor="" className='font-medium'>{t('name')}</label>
@@ -232,7 +234,16 @@ function CreateListing() {
                         maxLength='32'
                         minLength='10'
                         required />
-                    <div className=' flex mt-4 gap-x-4'>
+                        <label htmlFor="" className='block mt-4 font-medium '>{t('address')}</label>
+                        <textarea
+                            className='w-2/3 rounded-lg mt-2'
+                            type='text'
+                            id='address'
+                            value={address}
+                            onChange={onMutate}
+                            required
+                        />
+                        <div className=' flex mt-4 gap-x-4'>
                         <div className=' flex flex-col gap-y-1'>
                             <label htmlFor="" className='font-medium '>{t('bathrooms')}</label>
                             <input
@@ -258,10 +269,11 @@ function CreateListing() {
                                 required />
                         </div>
                     </div>
+                    <div className='flex flex-col relative gap-x-4 my-2  flex-wrap'>
                     <label htmlFor="" className='block mt-4 font-medium '>{t('parkingSpot')}</label>
-                    <div className='flex gap-x-4 px-2 mt-1 '>
+                    <div className='flex flex-col w-fit  gap-4 px-2 mt-1 '>
                         <button
-                            className={`px-6 py-1 font-semibold rounded-lg shadow-md shadow-gray-300 ${parking ? 'bg-green-500 text-white' : 'bg-white'}`}
+                            className={`px-6 py-1 font-semibold rounded-lg shadow-md shadow-gray-300 ${parking ? 'bg-blue-500 text-white' : 'bg-white'}`}
                             type='button'
                             id='parking'
                             value={true}
@@ -271,7 +283,7 @@ function CreateListing() {
                         </button>
 
                         <button
-                            className={`px-6 py-1 font-semibold rounded-lg shadow-md shadow-gray-300 ${!parking && parking !== null ? 'bg-green-500 text-white' : 'bg-white'}`}
+                            className={`px-6 py-1 font-semibold rounded-lg shadow-md shadow-gray-300 ${!parking && parking !== null ? 'bg-blue-500 text-white' : 'bg-white'}`}
                             type='button'
                             id='parking'
                             value={false}
@@ -280,10 +292,11 @@ function CreateListing() {
                             {t('no')}
                         </button>
                     </div>
+                    <hr className='hidden md:block h-[2px] bg-blue-500  mt-4'/>
                     <label htmlFor="" className='block mt-4 font-medium '>{t('furnished')}</label>
-                    <div className='flex gap-x-4 px-2 mt-1 '>
+                    <div className='flex flex-col w-fit  gap-4 px-2 mt-1 '>
                         <button
-                            className={`px-6 py-1 font-semibold rounded-lg shadow-md shadow-gray-300 ${furnished ? 'bg-green-500 text-white' : 'bg-white'}`}
+                            className={`px-6 py-1 font-semibold rounded-lg shadow-md shadow-gray-300 ${furnished ? 'bg-blue-500 text-white' : 'bg-white'}`}
                             type='button'
                             id='furnished'
                             value={true}
@@ -293,7 +306,7 @@ function CreateListing() {
                         </button>
 
                         <button
-                            className={`px-6 py-1 font-semibold rounded-lg shadow-md shadow-gray-300 ${!furnished && furnished !== null ? 'bg-green-500 text-white' : 'bg-white'}`}
+                            className={`px-6 py-1 font-semibold rounded-lg shadow-md shadow-gray-300 ${!furnished && furnished !== null ? 'bg-blue-500 text-white' : 'bg-white'}`}
                             type='button'
                             id='furnished'
                             value={false}
@@ -303,17 +316,10 @@ function CreateListing() {
 
                         </button>
                     </div>
-                    <label htmlFor="" className='block mt-4 font-medium '>{t('address')}</label>
-                    <textarea
-                        className='w-2/3 rounded-lg mt-2'
-                        type='text'
-                        id='address'
-                        value={address}
-                        onChange={onMutate}
-                        required
-                    />
+                    </div>
+                    
                     <label htmlFor="" className='block mt-4 font-medium '>{t('locationOnMap')}</label>
-                    <div className='h-56 w-12/12'>
+                    <div className='h-56 w-12/12 z-10'>
                         <MapContainer style={{ height: '100%', width: '100%' }}
                             center={[latitude, longitude]}
                             zoom={8}
@@ -332,7 +338,7 @@ function CreateListing() {
                     <label htmlFor="" className='block mt-4 font-medium '>{t('offer')}</label>
                     <div className='flex gap-x-4 px-2 mt-1 '>
                         <button
-                            className={`px-6 py-1 font-semibold rounded-lg shadow-md shadow-gray-300 ${offer ? 'bg-green-500 text-white' : 'bg-white'}`}
+                            className={`px-6 py-1 font-semibold rounded-lg shadow-md shadow-gray-300 ${offer ? 'bg-blue-500 text-white' : 'bg-white'}`}
                             type='button'
                             id='offer'
                             value={true}
@@ -341,7 +347,7 @@ function CreateListing() {
                             {t('yes')}
                         </button>
                         <button
-                            className={`px-6 py-1 font-semibold rounded-lg shadow-md shadow-gray-300 ${!offer && offer !== null ? 'bg-green-500 text-white' : 'bg-white'}`}
+                            className={`px-6 py-1 font-semibold rounded-lg shadow-md shadow-gray-300 ${!offer && offer !== null ? 'bg-blue-500 text-white' : 'bg-white'}`}
                             type='button'
                             id='offer'
                             value={false}
@@ -386,7 +392,7 @@ function CreateListing() {
                     <label htmlFor="" className='block mt-4 font-medium '>{t('images')}</label>
                     <p className='my-2'>{t('imagesLimit')}</p>
                     <input
-                        className='file:mr-2  w-full file:px-2 file:py-1 px-4 py-2 file:font-medium bg-white rounded-md file:bg-green-500 file:border-none file:text-white file:rounded-lg'
+                        className='file:mr-2  w-full file:px-2 file:py-1 px-4 py-2 file:font-medium bg-white rounded-md file:bg-blue-500 file:border-none file:text-white file:rounded-lg'
                         type="file"
                         id="images"
                         onChange={onMutate}
@@ -396,7 +402,7 @@ function CreateListing() {
                         required
                     />
                     <div className='w-full flex items-center'>
-                        <button className='mt-8 px-4 py-1 bg-green-500 text-white font-medium rounded-md shadow-md shadow-gray-300 w-2/3 mx-auto' type="submit">{t('createListing')}</button>
+                        <button className='mt-8 px-4 py-1 bg-blue-500 text-white font-medium rounded-md shadow-md shadow-gray-300 w-2/3 mx-auto' type="submit">{t('createListing')}</button>
                     </div>
                 </form>
             </main>

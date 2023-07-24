@@ -89,7 +89,7 @@ return (
             <button type="submit" className="flex gap-x-4 w-full justify-between md:justify-start items-center">
                 <p className="text-lg font-semibold">{t('signup')}</p>
                 <span className="">
-                    <IoIosArrowDroprightCircle className="mt-1 w-8 h-8 rtl:-scale-x-100 rounded-full fill-green-500" />
+                        <IoIosArrowDroprightCircle className="mt-1 w-8 h-8 rtl:-scale-x-100 rounded-full fill-blue-500" />
                 </span>
             </button>
         </form>
@@ -100,7 +100,7 @@ return (
         <div className="flex  gap-x-4  justify-center mt-4">
             <p className="text-base font-semibold text-gray-400 text-center mt-4">{t('alreadyHaveAccount')}</p>
             <Link to={'/sign-in'}>
-            <p className="text-base font-semibold text-green-700 text-center mt-4">{t('signin')}</p>
+                    <p className="text-base font-semibold text-blue-700 text-center mt-4">{t('signin')}</p>
             </Link>
         </div>
     </main>

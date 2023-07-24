@@ -103,13 +103,13 @@ const {t} = useTranslation();
     <div className='container mx-auto'>
       <header className='flex justify-between mx-4 my-2'>
         <h1 className='text-xl font-semibold'>{t('myProfile')}</h1>
-        <button className='px-2 py-1 bg-green-500 font-semibold text-white rounded-xl' onClick={onLogOut}>{t('logout')}</button>
+        <button className='px-2 py-1 bg-blue-500 font-semibold text-white rounded-xl' onClick={onLogOut}>{t('logout')}</button>
       </header>
 
       <main className='mx-2 my-4'>
         <div className='flex justify-between font-semibold'>
           <p> {t('personalDetailes')} </p>
-          <p className=' text-green-500 text-sm cursor-pointer' onClick={()=>{
+          <p className=' text-blue-500 text-sm cursor-pointer' onClick={() => {
             changeDetails && onSubmit()
             setChangeDetails((prev)=>!prev)
           }}>{changeDetails? t('done'):t('edit')}</p>
@@ -117,7 +117,7 @@ const {t} = useTranslation();
           <div className='justify-center   flex'>
             <ProfileIcon className="w-16 h-16 rounded-full" />
           </div>
-          <h2 className='w-full text-center border-b-2 border-solid border-green-500 my-4 px-2'><span className='bg-slate-100 px-2 max-w-xs'>{(auth.currentUser.displayName).toUpperCase()} {t('profile')}</span></h2>
+        <h2 className='w-full text-center border-b-2 border-solid border-blue-500 my-4 px-2'><span className='bg-slate-100 px-2 max-w-xs'>{(auth.currentUser.displayName).toUpperCase()} {t('profile')}</span></h2>
 
         <form className='my-8  gap-y-4 max-w-xl mx-auto '>
             <input type="text" id='name' 

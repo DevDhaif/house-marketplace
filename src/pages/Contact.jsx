@@ -56,7 +56,7 @@ function Contact() {
               )}&body=${message}`}
             >
             
-                            <button type='button' className='mx-auto px-12 py-2 rounded-md bg-green-500 text-white '>{t('sendMessage')}</button>
+                            <button type='button' className='mx-auto px-12 py-2 rounded-md bg-blue-500 text-white '>{t('sendMessage')}</button>
                     </a>
                 </form>
                   

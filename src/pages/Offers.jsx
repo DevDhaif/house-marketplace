@@ -116,7 +116,7 @@ function Offers() {
                         </ul>
                     </main>
                     {lastFetchedListing && (
-                        <p className='cursor-pointer text-center  mx-auto mt-4 px-4 py-0.5 bg-green-500 w-28 rounded-md text-white'
+                            <p className='cursor-pointer text-center  mx-auto mt-4 px-4 py-0.5 bg-blue-500 w-28 rounded-md text-white'
                             onClick={onFetchMore}
                         >{t('loadMore')}</p>
                     )}

@@ -119,7 +119,7 @@ function Category() {
                             </main>
 
                             {lastFetchedListing &&(
-                                <p className='cursor-pointer text-center mx-auto mt-4 px-4 py-1  bg-green-500 w-fit rounded-md text-white'
+                          <p className='cursor-pointer text-center mx-auto mt-4 px-4 py-1  bg-blue-500 w-fit rounded-md text-white'
                                     onClick={onFetchMore}
                                 >{t('loadMore')}</p>
                             )}
